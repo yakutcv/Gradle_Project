@@ -1,0 +1,29 @@
+group 'Task'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+compileJava {
+    sourceCompatibility = '1.8'
+}
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+println System.getProperty("java.home")
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile(
+            [group: 'joda-time', name:'joda-time', version: '2.9.3'],
+            [group:'com.fasterxml.jackson.core', name:'jackson-core', version:'2.7.3'],
+            [group: 'com.fasterxml.jackson.core', name:'jackson-databind', version:'2.7.3'],
+            [group:'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.7.3'],
+            [group:'mysql', name:'mysql-connector-java', version:'5.1.38'],
+            [group:'com.google.code.gson', name:'gson', version:'2.6.2']
+    )
+}
+
+
