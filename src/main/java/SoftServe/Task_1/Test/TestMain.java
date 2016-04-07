@@ -6,6 +6,7 @@ package SoftServe.Task_1.Test;
 
 import SoftServe.Task_1.Entity.Analysis;
 import SoftServe.Task_1.Entity.Patient;
+import SoftServe.Task_1.IO.SQL.AnalyzesDAO;
 import SoftServe.Task_1.IO.SQL.PatientDAO;
 import SoftServe.Task_1.IO.SelfFormatIO;
 import SoftServe.Task_1.Logic.Hospital;
@@ -58,12 +59,11 @@ public class TestMain {
                         .build())
                 .build();
 
-
         Patient third = Patient.newPatientBuilder()
                 .setBirthDate("04/04/1998")
                 .setName("Jora")
                 .setLastName("Jorkin")
-                .setId(4)
+                .setId(2)
                 .setAnalysis(Analysis.newAnalysisBuilder()
                         .setId(1)
                         .setType(ALLERGY)
@@ -83,23 +83,29 @@ public class TestMain {
         hospital.addPatient(second);
         hospital.addPatient(third);
 
+        List<Patient> listPatients = new ArrayList<>();
+        listPatients.add(first);
+        listPatients.add(second);
+        listPatients.add(third);
+
+
+
         Analysis analysis_1 = Analysis.newAnalysisBuilder()
-                .setId(2)
-                .setType(ALLERGY)
+                .setType(RH_FACTOR)
                 .setDate("02/01/2016 13:10")
-                .setReport("Analysis fdf")
+                .setReport("Bad bad")
                 .build();
 
         Analysis analysis_2 = Analysis.newAnalysisBuilder()
-                .setType(BIOPSY)
-                .setDate("04/02/2016 13:10")
-                .setReport("GOOD")
+                .setType(ALLERGY)
+                .setDate("04/02/2016 13:16")
+                .setReport("bcvbcvb")
                 .build();
 
         Analysis analysis_3 = Analysis.newAnalysisBuilder()
-                .setType(RH_FACTOR)
-                .setDate("04/03/2016 13:10")
-                .setReport("sdgfsdgsdgsdg")
+                .setType(BLOOD)
+                .setDate("04/03/2014 13:11")
+                .setReport("sdf")
                 .build();
 
         List<Analysis> listAnalysis = new ArrayList<>();
@@ -130,7 +136,7 @@ public class TestMain {
         //Hospital hosp2 = self.readHospital("myTxt.txt");
         //System.out.println(hosp2);
         PatientDAO ptDAO = new PatientDAO();
-        ptDAO.addPatient(third);
+        //ptDAO.deletePatientTable();
         //ptDAO.createPatientTable();
         //ptDAO.addPatient(second);
         //ptDAO.addPatient(third);
@@ -138,7 +144,7 @@ public class TestMain {
         //ptDAO.removePatientTable();
         //ptDAO.createPatientTable();
         //ptDAO.addPatient(first);
-        //ptDAO.addListPatients(hosp2.getPatients());
+        //ptDAO.addListPatients(listPatients);
         //Hospital hospital1 = new Hospital();
         //hospital1.setPatients(ptDAO.readAllPatients());
         //ptDAO.updatePatient(third);
@@ -147,11 +153,12 @@ public class TestMain {
         //ptDAO.addPatient(first);
         //ptDAO.deletePatientById(2);
 
-        //AnalyzesDAO ADAO = new AnalyzesDAO();
+        AnalyzesDAO ADAO = new AnalyzesDAO();
+        //ADAO.deleteAnalysisTable();
         //ADAO.deletePatientTable();
         //ADAO.createAnalyzesTable();
         //ADAO.addAnalysis(analysis_1, first);
-        //ADAO.addListAnalysis(listAnalysis, second);
+        ADAO.addListAnalysis(listAnalysis, third);
         //ADAO.deletePatientTable();
         //ADAO.updateAnalysis(analysis_1);
         //ADAO.deleteAnalysisById(1);

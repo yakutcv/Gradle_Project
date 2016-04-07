@@ -4,6 +4,7 @@ import SoftServe.Task_1.Entity.Patient;
 
 import java.sql.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -152,7 +153,7 @@ public class PatientDAO {
         return false;
     }
 
-    public boolean addListPatients(Set<Patient> patients) {
+    public boolean addListPatients(List<Patient> patients) {
         try{
             connector.connect();
             preparedStatement = connector.getConnection().prepareStatement(CREATE_PATIENT);

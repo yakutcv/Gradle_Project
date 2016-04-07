@@ -289,6 +289,39 @@ public class AnalyzesDAO {
     }
 
 
+    public List<Analysis> readAllAnalyzesByPatientID(long id) {
+        List<Analysis> analyzes = new ArrayList<>();
+        try{
+            connector.connect();
+            preparedStatement = connector.getConnection().prepareStatement(READ_ANALYZES_BY_PATIENT_ID);
+            preparedStatement.setLong(1,id);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                analyzes.add(new Analysis().newAnalysisBuilder()
+                        .setId(resultSet.getLong(1))
+                        .setType(AnalysisType.valueOf(resultSet.getString(2)))
+                        .setDate(resultSet.getString(3))
+                        .setReport(resultSet.getString(4))
+                        .build());
+            }
+            System.out.println("List Analyzes was read and add to patient with " + id);
+        }catch (SQLException e) {
+            System.out.println("Connection failed!");
+            e.printStackTrace();
+            System.out.println("Couldn't read and add List Analyzes to patient with id" + id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                preparedStatement.close();
+                connector.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return analyzes;
+    }
+
 
 
 }
