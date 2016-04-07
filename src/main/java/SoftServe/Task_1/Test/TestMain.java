@@ -6,8 +6,8 @@ package SoftServe.Task_1.Test;
 
 import SoftServe.Task_1.Entity.Analysis;
 import SoftServe.Task_1.Entity.Patient;
-import SoftServe.Task_1.IO.SQL.AnalyzesDAO;
 import SoftServe.Task_1.IO.SQL.PatientDAO;
+import SoftServe.Task_1.IO.SelfFormatIO;
 import SoftServe.Task_1.Logic.Hospital;
 
 import java.util.ArrayList;
@@ -122,12 +122,16 @@ public class TestMain {
         //Hospital hospitalSecond =  xmlIO.readHospital("hospital.xml");
         //System.out.println(hospitalSecond.getByAnalisisType(BLOOD));*/
 
-        //SelfFormatIO self = new SelfFormatIO();
-        //self.writeHospital(hospital,"myTxt.txt");
+        SelfFormatIO self = new SelfFormatIO();
+
+
+
 
         //Hospital hosp2 = self.readHospital("myTxt.txt");
         //System.out.println(hosp2);
         PatientDAO ptDAO = new PatientDAO();
+        ptDAO.addPatient(third);
+        //ptDAO.createPatientTable();
         //ptDAO.addPatient(second);
         //ptDAO.addPatient(third);
         //ptDAO.deletePatientTable();
@@ -135,7 +139,7 @@ public class TestMain {
         //ptDAO.createPatientTable();
         //ptDAO.addPatient(first);
         //ptDAO.addListPatients(hosp2.getPatients());
-        Hospital hospital1 = new Hospital();
+        //Hospital hospital1 = new Hospital();
         //hospital1.setPatients(ptDAO.readAllPatients());
         //ptDAO.updatePatient(third);
         //ptDAO.createPatientTable();
@@ -143,7 +147,7 @@ public class TestMain {
         //ptDAO.addPatient(first);
         //ptDAO.deletePatientById(2);
 
-        AnalyzesDAO ADAO = new AnalyzesDAO();
+        //AnalyzesDAO ADAO = new AnalyzesDAO();
         //ADAO.deletePatientTable();
         //ADAO.createAnalyzesTable();
         //ADAO.addAnalysis(analysis_1, first);
@@ -156,8 +160,7 @@ public class TestMain {
 
 
         //Analysis dsdf = ADAO.readAnalyzesById(14);
-        List<Analysis> sdf = ADAO.readAllAnalyzesByPatient(second);
-        System.out.println(sdf);
+
 
 
 

@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static SoftServe.Task_1.IO.Exceptions.ExceptionList.DEFAULT;
+import static SoftServe.Task_1.IO.Parsers.AnalyzesParser.parsePatients;
 import static SoftServe.Task_1.IO.Validators.SelfFormatValidator.validPatient;
 
 public class SelfFormatIO implements IO {
@@ -25,13 +25,12 @@ public class SelfFormatIO implements IO {
     private static DateTimeFormatter format = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
     private static DateTimeFormatter format1 = DateTimeFormat.forPattern("dd/MM/yyyy");
 
-    private static final String INPUT_PATTERN = "([A-Z]{1}[a-z]{1,})\\s([A-Z]{1}[a-z]{1,})\\s\\((.*)\\)\\:\\{(.*)\\}";
-    private static final String ANALYZES_PATTERN = "\\s([A-Z]{1,})\\s\\((.*)\\)\\s(.*)";
 
+    private static final String ANALYZES_PATTERN = "\\s([A-Z]{1,})\\s\\((.*)\\)\\s(.*)";
 
     @Override
     public void writeHospital(Hospital hospital, String file) throws IOException {
-        FileWriter writer = new FileWriter("src\\SoftServe\\SoftServe.Task_1\\data\\" + file);
+        FileWriter writer = new FileWriter("src\\main\\java\\SoftServe.Task_1\\data\\" + file);
         try {
             writer.write(covertToString(hospital).toString());
             writer.flush();
@@ -41,53 +40,15 @@ public class SelfFormatIO implements IO {
             System.out.println("Failed to record file!" + e);
         }
     }
-
-    private List<String> splitPatients (String string) throws SelfFormatException {
-
-        List<String> patients = new ArrayList<>();
-        try{
-            Pattern p = Pattern.compile(INPUT_PATTERN);
-            Matcher m = p.matcher(string);
-            m.matches();
-            patients.add(m.group(1));
-            patients.add(m.group(2));
-            patients.add(m.group(3));
-            try{
-                patients.add(m.group(4));
-                }catch (Exception e) {
-            }
-        }catch (Exception e) {
-            throw new SelfFormatException(DEFAULT);
-        }
-        return patients;
-    }
-
-    private List<String> splitAnalizes(String string) throws SelfFormatException {
-        List<String> anlyzes = new ArrayList<>();
-        try{
-            Pattern p = Pattern.compile(ANALYZES_PATTERN);
-            Matcher m = p.matcher(string);
-            m.matches();
-            anlyzes.add(m.group(1));
-            anlyzes.add(m.group(2));
-            anlyzes.add(m.group(3));
-        }catch (Exception e) {
-            throw new SelfFormatException(DEFAULT);
-        }
-        return anlyzes;
-    }
-
-
-
     @Override
     public Hospital readHospital(String file) throws JAXBException, FileNotFoundException, IOException, ClassNotFoundException, SelfFormatException {
         Hospital hospital = new Hospital();
         List<String> tmpHospital = new ArrayList<>();
         long id = 1;
         String st;
-        try (BufferedReader br = new BufferedReader(new FileReader("src\\SoftServe\\SoftServe.Task_1\\data\\" + file))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src\\main\\java\\SoftServe\\Task_1\\data\\" + file))) {
             while ((st = br.readLine()) != null) {
-                validPatient(splitPatients(st));
+                validPatient(parsePatients(st));
                 tmpHospital.add(st);
             }
         } catch (IOException e) {
@@ -95,8 +56,9 @@ public class SelfFormatIO implements IO {
 
         }
 
+
         for(String s : tmpHospital) {
-            List<String> patients = splitPatients(s);
+            List<String> patients = parsePatients(s);
             List<Analysis> tmpListOfAnalyzes = new ArrayList<>();
             String tmpAnalyzes[] = patients.get(3).split(",");
 
