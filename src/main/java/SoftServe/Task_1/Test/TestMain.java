@@ -158,7 +158,16 @@ public class TestMain {
         //ADAO.deletePatientTable();
         //ADAO.createAnalyzesTable();
         //ADAO.addAnalysis(analysis_1, first);
-        ADAO.addListAnalysis(listAnalysis, third);
+        //ADAO.addListAnalysis(listAnalysis, third);
+
+
+
+
+
+
+
+
+
         //ADAO.deletePatientTable();
         //ADAO.updateAnalysis(analysis_1);
         //ADAO.deleteAnalysisById(1);

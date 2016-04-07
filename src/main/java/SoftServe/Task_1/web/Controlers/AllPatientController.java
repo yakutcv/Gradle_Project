@@ -37,7 +37,6 @@ public class AllPatientController extends HttpServlet {
 
         try{
             patients = new PatientDAO().readAllPatientsFromDB();
-            System.out.println(patients);
         }catch (Exception e) {
             e.printStackTrace();
             //out.print("Can't view all patients from DB");

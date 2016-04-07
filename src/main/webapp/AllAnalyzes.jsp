@@ -13,15 +13,23 @@
 </head>
 <body>
 
-<h2> All Patients</h2>
+<h2> All Analyzes</h2>
 
 <%--<div>
 <c:forEach items = "${patients}" var = "patient" >
     <br>${patient.id} ${patient.name} ${patient.lastName} ${patient.getBirthDateInString()}
 </c:forEach>
 </div>--%>
+<p>
+    All analyzes for patient ${patient.getFullName()}
+
+</p>
+
+
+
 
 <table border = "1">
+
     <tr>
         <th> id </th>
         <th> Type </th>
@@ -38,8 +46,8 @@
     </c:forEach>
 </table>
 
-<form name = "goIndex" action = "Patients" method = "POST">
-    <input type = "submit" value = "Go back to the main page">
+<form name = "goToPatients" action = "Patients">
+    <input type = "submit" value = "Go back to the list with all patients">
 </form>
 
 

@@ -23,7 +23,7 @@ import static SoftServe.Task_1.IO.Validators.SelfFormatValidator.validName;
 /**
  * Created by ayasintc on 4/7/2016.
  */
-@WebServlet("/PatientController")
+@WebServlet("/AddPatient")
 public class AddPatient extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,8 +34,6 @@ public class AddPatient extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
 
         String name = request.getParameter("name");
         String lastName = request.getParameter("lastName");

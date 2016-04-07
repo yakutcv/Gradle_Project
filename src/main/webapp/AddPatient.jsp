@@ -14,7 +14,7 @@
 <body>
     <h1> Add Patient</h1>
 
-    <form name = "AddPatient" action = "PatientController" method = "POST">
+    <form name = "AddPatient" action = "AddPatient" method = "POST">
 
         <br> Name: <input type = "text" name = "name">
 
