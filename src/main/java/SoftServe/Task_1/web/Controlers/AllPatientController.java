@@ -2,7 +2,6 @@ package SoftServe.Task_1.web.Controlers;
 
 import SoftServe.Task_1.Entity.Patient;
 import SoftServe.Task_1.IO.SQL.PatientDAO;
-import SoftServe.Task_1.Logic.Hospital;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,10 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,6 +29,7 @@ public class AllPatientController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //PrintWriter out = response.getWriter();
 
+
         Set<Patient> patients = new HashSet<>();
 
         try{
@@ -41,6 +38,7 @@ public class AllPatientController extends HttpServlet {
             e.printStackTrace();
             //out.print("Can't view all patients from DB");
         }
+
 
         request.setAttribute("patients", patients);
 

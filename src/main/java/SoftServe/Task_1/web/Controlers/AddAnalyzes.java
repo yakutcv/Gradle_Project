@@ -1,5 +1,6 @@
 package SoftServe.Task_1.web.Controlers;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ public class AddAnalyzes extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher dispatcher = request.getRequestDispatcher("AddAna.jsp");
+        dispatcher.forward(request, response);
     }
 }
