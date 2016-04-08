@@ -33,7 +33,7 @@ public class AllPatientController extends HttpServlet {
         Set<Patient> patients = new HashSet<>();
 
         try{
-            patients = new PatientDAO().readAllPatientsFromDB();
+            patients = new PatientDAO().getAllPatients();
         }catch (Exception e) {
             e.printStackTrace();
             //out.print("Can't view all patients from DB");

@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Phenom
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,17 +27,13 @@
       <br>
       <br>
 
-
       <div class="row">
         <p class="lead text-center">Edit patient ${patient2.getFullName()} with id ${patient2.getId()} </p>
-
 
         <%--<p class="bg-success validation-msg hide-content" id="successMassage">Форма заполнена правильно</p>
 
                 <p class="bg-danger validation-msg hide-content" id="errorMessage">Ошибка заполнения формы</p>--%>
-
-
-        <form class="form-horizontal text-center" id="completedForm" action = "EditPatientController?newId=$${patient2.getId()}" method = GET">
+        <form class="form-horizontal text-center" id="completedForm" action = "EditPatientController" method = "GET">
           <div class="form-group">
             <label for="inputName" class="col-sm-2 control-label">Name</label>
             <div class="col-sm-8">
@@ -64,7 +62,7 @@
               <button type="submit" id="submit" class="btn btn-lg btn-default">Edit</button>
             </div>
 
-
+              <input type="hidden" name = "id" value="${patient2.getId()}">
            <%-- <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" id="submit" class="btn btn-default">Проверить</button>
             </div>--%>
@@ -82,3 +80,4 @@
 
 </body>
 </html>
+

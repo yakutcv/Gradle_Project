@@ -57,6 +57,13 @@ public class Patient implements Serializable {
     @XmlElement(name="Analysis")
     private List<Analysis> listAnalyzes = new ArrayList<>();
 
+
+    private boolean status = true;
+
+    public boolean getStatus() {
+        return status;
+    }
+
     public Patient() {
 
     }
@@ -137,6 +144,11 @@ public class Patient implements Serializable {
         }
         public PatientBuilder setAnalysis(Analysis analyzes) {
             Patient.this.listAnalyzes.add(analyzes);
+            return this;
+        }
+
+        public PatientBuilder setStatus(boolean status) {
+            Patient.this.status = status;
             return this;
         }
 

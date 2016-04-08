@@ -45,6 +45,7 @@ public class TestMain {
                 .setName("Petia")
                 .setLastName("Petrushkin")
                 .setId(3)
+                .setStatus(false)
                 .setAnalysis(Analysis.newAnalysisBuilder()
                         .setId(1)
                         .setType(BLOOD)
@@ -64,6 +65,7 @@ public class TestMain {
                 .setName("Jora")
                 .setLastName("Jorkin")
                 .setId(2)
+                .setStatus(true)
                 .setAnalysis(Analysis.newAnalysisBuilder()
                         .setId(1)
                         .setType(ALLERGY)
@@ -114,6 +116,7 @@ public class TestMain {
         listAnalysis.add(analysis_3);
 
 
+
         //System.out.println(third.getBirthDateInString());
 
         /*JSONIO js = new JSONIO();
@@ -136,9 +139,20 @@ public class TestMain {
         //Hospital hosp2 = self.readHospital("myTxt.txt");
         //System.out.println(hosp2);
         PatientDAO ptDAO = new PatientDAO();
+
         //ptDAO.deletePatientTable();
         //ptDAO.createPatientTable();
+        //ptDAO.updatePatient(second);
+        //System.out.println(ptDAO.changeStatusPatient(first));
+
         //ptDAO.addPatient(second);
+        System.out.println(ptDAO.getAllPatients());
+
+
+
+
+
+        //ptDAO.readPatientById(1);
         //ptDAO.addPatient(third);
         //ptDAO.deletePatientTable();
         //ptDAO.removePatientTable();

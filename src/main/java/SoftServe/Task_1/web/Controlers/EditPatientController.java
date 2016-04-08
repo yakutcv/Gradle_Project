@@ -23,12 +23,15 @@ import static SoftServe.Task_1.IO.Validators.SelfFormatValidator.validName;
 public class EditPatientController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Patient patient2 = new PatientDAO().readPatientById(Long.parseLong(request.getParameter("newId")));
+        String id = request.getParameter("id");
+
+        Patient patient2 = new PatientDAO().readPatientById(Long.parseLong(id));
 
         String name = request.getParameter("name");
         String lastName = request.getParameter("lastName");
         String birthDate = request.getParameter("birthDate");
-        //validation
+
+              //validation
         if(!validBirthDate(birthDate)) {
 
         }
@@ -61,7 +64,7 @@ public class EditPatientController extends HttpServlet {
         Set<Patient> patients = new HashSet<>();
 
         try {
-            patients = new PatientDAO().readAllPatientsFromDB();
+            patients = new PatientDAO().getAllPatients();
         } catch (Exception e) {
         }
 
@@ -78,9 +81,10 @@ public class EditPatientController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("EditPatient.jsp");
+
         Patient patient2 = new PatientDAO().readPatientById(Long.parseLong(request.getParameter("id")));
         request.setAttribute("patient2", patient2);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("EditPatient.jsp");
         dispatcher.forward(request, response);
     }
 }

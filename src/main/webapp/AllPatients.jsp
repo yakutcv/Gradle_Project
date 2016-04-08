@@ -17,27 +17,11 @@
 
 
     <title>All Patients</title>
-
-    <script>
-
-        var counter = document.querySelector("#count");
-        var number = counter.value;
-
-        function getCounter(){
-            number++;
-            counter.innerHTML += number;
-        }
-
-        getCounter();
-
-    </script>
 </head>
 <body>
 
+<c:set var="count" value="${1}"/>
 
-
-
-<header>All Patients </header>
 
     <h2> All Patients</h2>
 
@@ -49,8 +33,11 @@
         <th> Birth Date </th>
     </tr>
         <c:forEach items = "${patients}" var = "patient">
+
             <tr>
-            <td id="count">0</td>
+            <td><c:out value="${count}"/></td>
+                <c:set var="count" value="${count+1}"/>
+
             <td> ${patient.name} </td>
             <td> ${patient.lastName} </td>
             <td> ${patient.getBirthDateInString()} </td>
@@ -72,6 +59,7 @@
             </tr>
         </c:forEach>
             </table>
+
 
         <form name = "goIndex" action = "Patients" method = "POST">
             <input type = "submit" value = "Go back to the main page">

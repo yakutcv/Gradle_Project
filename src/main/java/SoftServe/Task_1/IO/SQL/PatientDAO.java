@@ -1,6 +1,7 @@
 package SoftServe.Task_1.IO.SQL;
 
 import SoftServe.Task_1.Entity.Patient;
+import com.sun.xml.internal.ws.api.message.Packet;
 
 import java.sql.*;
 import java.util.HashSet;
@@ -17,11 +18,12 @@ public class PatientDAO {
     private static PreparedStatement preparedStatement;
     private static ResultSet resultSet;
     private String TABLE_NAME = "Patients";
-    private String CREATE_PATIENT_TABLE = "CREATE TABLE  "+ TABLE_NAME + " (id int NOT NULL AUTO_INCREMENT, Name text, Last_name text, Birth_date text, PRIMARY KEY (id))";
+    private String CREATE_PATIENT_TABLE = "CREATE TABLE  "+ TABLE_NAME + " (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, Name text, Last_name text, Birth_date text, Status BIT DEFAULT TRUE )";
     private String DELETE_PATIENT_TABLE = "DROP TABLE " + TABLE_NAME;
-    private String CREATE_PATIENT = "INSERT INTO " + TABLE_NAME + " (Name, Last_name, Birth_date) VALUES (?, ?, ?)";
+    private String CREATE_PATIENT = "INSERT INTO " + TABLE_NAME + " (Name, Last_name, Birth_date, Status) VALUES (?, ?, ?, ?)";
     private String DELETE_PATIENT = "DELETE FROM " + TABLE_NAME + " WHERE id =?";
-    private String UPDATE_PATIENT = "UPDATE " + TABLE_NAME + " Patients SET Name =?, Last_name=?, Birth_date=? WHERE id =?";
+    private String UPDATE_PATIENT = "UPDATE " + TABLE_NAME + " Patients SET Name =?, Last_name=?, Birth_date=?, Status=? WHERE id =?";
+    private String UPDATE_PATIENT_STATUS = "UPDATE " + TABLE_NAME + " Patients SET Status =? WHERE id =?";
     private String READ_PATIENT_BY_ID = "SELECT * FROM "+ TABLE_NAME +" WHERE id =?";
 
     public boolean createPatientTable() {
@@ -81,8 +83,9 @@ public class PatientDAO {
             preparedStatement.setString(1,patient.getName());
             preparedStatement.setString(2,patient.getLastName());
             preparedStatement.setString(3,patient.getBirthDateInString());
+            preparedStatement.setBoolean(4, patient.getStatus());
             preparedStatement.executeUpdate();
-            System.out.println("Patients " + patient.getFullName() + "has been added into table " + TABLE_NAME);
+            System.out.println("Patients " + patient.getFullName() + " has been added into table " + TABLE_NAME);
             return true;
         }catch (SQLException e) {
             e.printStackTrace();
@@ -133,7 +136,8 @@ public class PatientDAO {
             preparedStatement.setString(1, patient.getName());
             preparedStatement.setString(2, patient.getLastName());
             preparedStatement.setString(3,patient.getBirthDateInString());
-            preparedStatement.setLong(4, patient.getId());
+            preparedStatement.setLong(5, patient.getId());
+            preparedStatement.setBoolean(4, patient.getStatus());
             preparedStatement.executeUpdate();
             System.out.println("Patient with id " + patient.getFullName() + " was deleted!");
         }catch (SQLException e) {
@@ -216,8 +220,8 @@ public class PatientDAO {
         return patient;
     }
 
-    public Set<Patient> readAllPatientsFromDB() {
-        String READ_ALL_PATIENTS = "SELECT * FROM Patients";
+    public Set<Patient> getAllPatients() {
+        String READ_ALL_PATIENTS = "SELECT * FROM Patients WHERE Status=1";
         Set<Patient> patients = new HashSet<>();
         try{
             connector.connect();
@@ -249,6 +253,36 @@ public class PatientDAO {
         }
         return patients;
     }
+
+
+    public boolean changeStatusPatient(Patient patient) {
+        try{
+            connector.connect();
+            preparedStatement = connector.getConnection().prepareStatement(UPDATE_PATIENT_STATUS);
+            preparedStatement.setBoolean(1, patient.getStatus());
+            preparedStatement.setLong(2, patient.getId());
+            preparedStatement.executeUpdate();
+            System.out.println("Patients status with id " + patient.getFullName() + " was changed!");
+        }catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't update patient status " + patient);
+        } catch (Exception e) {
+            System.out.println("Connection failed!");
+            e.printStackTrace();
+        }finally {
+            try {
+                preparedStatement.close();
+                connector.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+
+
+    }
+
+
 
     public Patient readPatientByIdWithAlalyzes(Patient patient) {
         Patient pat = null;

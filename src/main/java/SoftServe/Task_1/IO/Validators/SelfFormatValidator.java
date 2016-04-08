@@ -92,6 +92,16 @@ public class SelfFormatValidator {
         }
     }
 
+    public static String convertDate (String value) {
+
+        String tmp ="";
+        if(value.length()==1) {
+            tmp = "0"+value;
+        }else {
+            tmp = value;
+        }
+            return tmp;
+    }
 
     public static void main(String[] args) {
 

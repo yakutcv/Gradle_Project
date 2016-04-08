@@ -40,7 +40,6 @@ public class AddPatient extends HttpServlet {
         String birthDate = request.getParameter("birthDate");
         //PrintWriter out = response.getWriter();
 
-
         if(!validBirthDate(birthDate)) {
 
         }
@@ -72,7 +71,7 @@ public class AddPatient extends HttpServlet {
         Set<Patient> patients = new HashSet<>();
 
         try {
-            patients = new PatientDAO().readAllPatientsFromDB();
+            patients = new PatientDAO().getAllPatients();
         } catch (Exception e) {
         }
 

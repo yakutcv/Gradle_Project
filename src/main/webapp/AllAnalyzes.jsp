@@ -31,7 +31,7 @@
 
     <tr>
         <th> id </th>
-        <th> Type </th>
+        <th> Type Analyzes </th>
         <th> Date </th>
         <th> Report </th>
     </tr>
@@ -39,14 +39,19 @@
         <tr>
             <td> ${analysis.id}</td>
             <td> ${analysis.getType()} </td>
-            <td> ${analysis.getReport()} </td>
             <td> ${analysis.getDateInString()} </td>
+            <td> ${analysis.getReport()} </td>
         </tr>
     </c:forEach>
 </table>
 
 <form name = "goToPatients" action = "Patients">
     <input type = "submit" value = "Go back to the list with all patients">
+</form>
+
+<form name = "addAnalyzes" action = "AddAnalyzes" method="GET">
+    <input type = "submit" value = "Add">
+    <input type="hidden" name = "id" value="${patient.id}">
 </form>
 
 
