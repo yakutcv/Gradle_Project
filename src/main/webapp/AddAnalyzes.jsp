@@ -1,100 +1,147 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ayasintc
-  Date: 4/7/2016
-  Time: 5:57 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Add Analysis</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css"/>
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-    <title>Add Analysis</title>
+    <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+                format: 'DD/MM/YYYY HH:mm'
+            });
+        });
+    </script>
+
 </head>
+
 
 <body>
 
-<div class="container">
-    <div class="row">
-        <div class=" col-sm-offset-1 col-sm-8">
-            <br>
-            <br>
+<!-- Top content -->
+<div class="top-content">
+
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1>Form to add a new analyzes</h1>
+                </div>
+            </div>
 
             <div class="row">
-                <p class="lead text-center">Add Analysis for patient ${patient.getFullName()} with id ${patient.getId()} </p>
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>Patient ${patient.getFullName()}</h3>
 
-                <%--<p class="bg-success validation-msg hide-content" id="successMassage">Форма заполнена правильно</p>
-
-                        <p class="bg-danger validation-msg hide-content" id="errorMessage">Ошибка заполнения формы</p>--%>
-                <form class="form-horizontal text-center" id="completedForm" action = "AddAnalyzes" method = "POST">
-                    <div class="form-group">
-                        <label for="inputType" class="col-sm-2 control-label">Type Analyzes</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputType" name="type" placeholder="Type Analyse">
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="inputReport" class="col-sm-2 control-label">Report</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputReport" name="report" placeholder="Report">
-
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-                    <label class="col-sm-2 control-label text-center">Date</label>
-                    </div>
-                    <div class="form-group">
-
-                        <div class="col-sm-2">
-                            <label for="inputDay" class="col-sm-2 control-label text-center center-block">Day</label>
-                            <input type="text" class="form-control" id="inputDay" name="Day" placeholder="Day">
-                        </div>
-
-                        <div class="col-sm-2">
-                            <label for="inputMont" class="col-sm-2 control-label text-center center-block">Month</label>
-                            <input type="text" class="form-control" id="inputMont" name="Month" placeholder="Month">
-                        </div>
-                            <div class="col-sm-2">
-                            <label for="inputYear" class="col-sm-2 control-label text-center center-block">Year</label>
-                            <input type="text" class="form-control" id="inputYear" name="Year" placeholder="Year">
+                                <p>To add a new analyzes, please fill all fields:</p>
                             </div>
-                        <div class="col-sm-2">
-                            <label for="inputHour" class="col-sm-2 control-label text-center center-block">Hour</label>
-                            <input type="text" class="form-control" id="inputHour" name="Hour" placeholder="Hour">
-                        </div>
-                            <div class="col-sm-2">
-                            <label for="inputMinutes" class="col-sm-2 control-label text-center center-block">Minutes</label>
-                            <input type="text" class="form-control" id="inputMinutes" name="Minutes" placeholder="Minutes">
+                            <div class="form-top-right">
+                                <i class="fa fa-pencil"></i>
                             </div>
+                        </div>
 
+                        <div class="form-bottom">
+                            <form role="form" action="AddAnalyzes?id=${patient.getId()}" method="POST" class="registration-form">
+                                <div class="form-group">
+                                    <label class="sr-only control-label" for="inputType">Type Analyzes</label>
+                                    <select name="type" class="form-control" id="inputType">
+                                        <option value="DEFAULT">Analyzes Type...</option>
+                                        <option value="BLOOD">Blood</option>
+                                        <option value="URINE">Urine</option>
+                                        <option value="BIOPSY">Biopsy</option>
+                                        <option value="HORMONES">Hormones</option>
+                                        <option value="RH_FACTOR">RH_FACTOR</option>
+                                        <option value="ALLERGY">Allegry</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="datetimepicker4" class="col-sm-2 control-label sr-only">Date</label>
+                                    <input type='text' class="form-control" id='datetimepicker4' name="date"
+                                           placeholder="Date..."/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="inputReport">Report</label>
+                                    <textarea name="report" placeholder="Report..." class="form-report form-control"
+                                              id="inputReport"></textarea>
+                                </div>
+                                <button type="submit" class="btn">Add Analyzes</button>
+                                <input type="hidden" name="id" value="${patient.getId()}">
+                            </form>
+
+                            <form name="goToListWithAnalyzes" action="AllAnalyzes?id=${patient.getId()}" method="POST">
+                                <button type="submit" class="btn btn-primary">Go back to the list with Analyzes</button>
+                            </form>
+
+
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-
-                    <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" id="submit" class="btn btn-lg btn-primary bottom-left">Add</button>
-                    </div>
-
-                        <input type="hidden" name = "id" value="${patient.getId()}">
-                        <%-- <div class="col-sm-offset-2 col-sm-10">
-                           <button type="submit" id="submit" class="btn btn-default">Проверить</button>
-                         </div>--%>
-                </form>
-                    </div>
-
-                    </div>
-
-
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="footer-border"></div>
+                <p>Made by Andrew Jasinskiy having a lot of fun. <i class="fa fa-smile-o"></i></p>
             </div>
 
         </div>
+    </div>
+</footer>
+<!-- Javascript -->
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 
-</body>
+<script src="assets/js/jquery.backstretch.min.js"></script>
+<script src="assets/js/scripts.js"></script>
+
+
+<!--[if lt IE 10]>
+<script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
 </html>

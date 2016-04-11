@@ -25,6 +25,7 @@ public class TestMain {
                 .setName("Andrew")
                 .setLastName("Yasinskiy")
                 .setId(1)
+                .setStatus(false)
                 .setAnalysis(Analysis.newAnalysisBuilder()
                         .setId(1)
                         .setType(HORMONES)
@@ -140,17 +141,26 @@ public class TestMain {
         //System.out.println(hosp2);
         PatientDAO ptDAO = new PatientDAO();
 
+        ptDAO.changeStatusPatientToFalse(new PatientDAO().getPatientById(3));
+
+        //ptDAO.addListPatients(listPatients);
+
+
+
         //ptDAO.deletePatientTable();
+
         //ptDAO.createPatientTable();
         //ptDAO.updatePatient(second);
         //System.out.println(ptDAO.changeStatusPatient(first));
-
+        //System.out.println(ptDAO.getPatientByIdWithAllAnalyzes(2));
         //ptDAO.addPatient(second);
-        System.out.println(ptDAO.getAllPatients());
+        //System.out.println(ptDAO.getAllPatients());
 
+        //ptDAO.updatePatient(first);
 
+        //System.out.println(ptDAO.getAllPatients());
 
-
+        //System.out.println(ptDAO.getPatientById(2).getStatus());
 
         //ptDAO.readPatientById(1);
         //ptDAO.addPatient(third);
@@ -174,9 +184,9 @@ public class TestMain {
         //ADAO.addAnalysis(analysis_1, first);
         //ADAO.addListAnalysis(listAnalysis, third);
 
+        //ADAO.createAnalyzesTable();
 
-
-
+        //ADAO.addListAnalysis(listAnalysis, first);
 
 
 
@@ -202,10 +212,6 @@ public class TestMain {
         //System.out.println(String.valueOf(first.getId()));
 
         //System.out.println(self.readHospital("myTxt.txt"));
-
-
-
-
 
 
 

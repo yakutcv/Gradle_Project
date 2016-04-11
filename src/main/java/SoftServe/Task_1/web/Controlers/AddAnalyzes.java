@@ -5,7 +5,6 @@ import SoftServe.Task_1.Entity.AnalysisType;
 import SoftServe.Task_1.Entity.Patient;
 import SoftServe.Task_1.IO.SQL.AnalyzesDAO;
 import SoftServe.Task_1.IO.SQL.PatientDAO;
-import jdk.internal.org.objectweb.asm.util.Printer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,11 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static SoftServe.Task_1.IO.Validators.SelfFormatValidator.*;
 
@@ -33,21 +29,17 @@ public class AddAnalyzes extends HttpServlet {
 
         System.out.println(id);
 
-        Patient patient = new PatientDAO().readPatientById(Long.parseLong(id));
+        Patient patient = new PatientDAO().getPatientById(Long.parseLong(id));
         List<Analysis> analyzes = new ArrayList<>();
+
+        System.out.println(patient);
+
+
 
         String type = request.getParameter("type");
         String report = request.getParameter("report");
+        String date = request.getParameter("date");
 
-        String Day = request.getParameter("Day");
-        String Month = request.getParameter("Month");
-        String Year = request.getParameter("Year");
-        String Hour = request.getParameter("Hour");
-        String Minutes = request.getParameter("Minutes");
-
-
-        String date = convertDate(Day) + "/" + convertDate(Month) + "/" + Year + " " + convertDate(Hour) + ":" + convertDate(Minutes);
-        System.out.println(date);
         //PrintWriter out = response.getWriter();
 
         if(!validAnalyzesDate(date)) {
@@ -76,12 +68,13 @@ public class AddAnalyzes extends HttpServlet {
         List<Analysis> analyzes2 = new ArrayList<>();
 
         try {
-            analyzes = new AnalyzesDAO().readAllAnalyzesByPatient(patient);
+            analyzes = new AnalyzesDAO().getAllAnalyzesByPatient(patient);
         } catch (Exception e) {
         }
 
         request.setAttribute("analyzes", analyzes);
         request.setAttribute("patient", patient);
+
 
         RequestDispatcher rd = request.getRequestDispatcher("AllAnalyzes");
 
@@ -89,7 +82,7 @@ public class AddAnalyzes extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Patient patient = new PatientDAO().readPatientById(Long.parseLong(request.getParameter("id")));
+        Patient patient = new PatientDAO().getPatientById(Long.parseLong(request.getParameter("id")));
         request.setAttribute("patient", patient);
         RequestDispatcher dispatcher = request.getRequestDispatcher("AddAnalyzes.jsp");
         dispatcher.forward(request, response);

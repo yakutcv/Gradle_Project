@@ -21,17 +21,19 @@ import static SoftServe.Task_1.IO.Validators.SelfFormatValidator.validName;
  */
 @WebServlet("/EditPatientController")
 public class EditPatientController extends HttpServlet {
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String id = request.getParameter("id");
-
-        Patient patient2 = new PatientDAO().readPatientById(Long.parseLong(id));
-
+        Patient patient2 = new PatientDAO().getPatientById(Long.parseLong(id));
         String name = request.getParameter("name");
         String lastName = request.getParameter("lastName");
         String birthDate = request.getParameter("birthDate");
+        System.out.println(birthDate);
 
-              //validation
+
+
         if(!validBirthDate(birthDate)) {
 
         }
@@ -71,18 +73,15 @@ public class EditPatientController extends HttpServlet {
         request.setAttribute("patients", patients);
         request.setAttribute("patient", patient);
 
-
-
         RequestDispatcher rd = request.getRequestDispatcher("AllPatients.jsp");
 
         rd.forward(request, response);
 
-
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        Patient patient2 = new PatientDAO().readPatientById(Long.parseLong(request.getParameter("id")));
+        Patient patient2 = new PatientDAO().getPatientById(Long.parseLong(request.getParameter("id")));
         request.setAttribute("patient2", patient2);
         RequestDispatcher dispatcher = request.getRequestDispatcher("EditPatient.jsp");
         dispatcher.forward(request, response);

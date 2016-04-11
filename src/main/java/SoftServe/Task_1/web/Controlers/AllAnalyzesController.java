@@ -27,13 +27,13 @@ public class AllAnalyzesController extends HttpServlet {
         long id = Long.parseLong(request.getParameter("id"));
 
 
-        Patient patient = new PatientDAO().readPatientById(id);
+        Patient patient = new PatientDAO().getPatientById(id);
 
         List<Analysis> analyzes = new ArrayList<>();
 
         try{
 
-            analyzes = new AnalyzesDAO().readAllAnalyzesByPatientID(id);
+            analyzes = new AnalyzesDAO().getAllAnalyzesByPatientId(id);
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -49,7 +49,7 @@ public class AllAnalyzesController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("AllPatients.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("AllPatients");
         dispatcher.forward(request, response);
 
     }

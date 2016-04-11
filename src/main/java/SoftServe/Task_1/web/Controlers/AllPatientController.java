@@ -29,16 +29,13 @@ public class AllPatientController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //PrintWriter out = response.getWriter();
 
-
         Set<Patient> patients = new HashSet<>();
-
         try{
             patients = new PatientDAO().getAllPatients();
         }catch (Exception e) {
             e.printStackTrace();
             //out.print("Can't view all patients from DB");
         }
-
 
         request.setAttribute("patients", patients);
 

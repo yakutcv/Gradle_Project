@@ -1,9 +1,12 @@
 package SoftServe.Task_1.IO.SQL;
 
 import SoftServe.Task_1.Entity.Patient;
-import com.sun.xml.internal.ws.api.message.Packet;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,13 +21,16 @@ public class PatientDAO {
     private static PreparedStatement preparedStatement;
     private static ResultSet resultSet;
     private String TABLE_NAME = "Patients";
-    private String CREATE_PATIENT_TABLE = "CREATE TABLE  "+ TABLE_NAME + " (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, Name text, Last_name text, Birth_date text, Status BIT DEFAULT TRUE )";
+    private String CREATE_PATIENT_TABLE = "CREATE TABLE  "+ TABLE_NAME + " (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, Name text NOT NULL, Last_name text NOT NULL, Birth_date text NOT NULL, Status BIT DEFAULT TRUE)";
     private String DELETE_PATIENT_TABLE = "DROP TABLE " + TABLE_NAME;
     private String CREATE_PATIENT = "INSERT INTO " + TABLE_NAME + " (Name, Last_name, Birth_date, Status) VALUES (?, ?, ?, ?)";
     private String DELETE_PATIENT = "DELETE FROM " + TABLE_NAME + " WHERE id =?";
     private String UPDATE_PATIENT = "UPDATE " + TABLE_NAME + " Patients SET Name =?, Last_name=?, Birth_date=?, Status=? WHERE id =?";
-    private String UPDATE_PATIENT_STATUS = "UPDATE " + TABLE_NAME + " Patients SET Status =? WHERE id =?";
-    private String READ_PATIENT_BY_ID = "SELECT * FROM "+ TABLE_NAME +" WHERE id =?";
+    private String UPDATE_PATIENT_STATUS = "UPDATE " + TABLE_NAME + " Patients SET Status =FALSE WHERE id =?";
+    private String GET_PATIENT_BY_ID = "SELECT * FROM "+ TABLE_NAME +" WHERE id =?";
+    private String GET_ALL_PATIENTS = "SELECT * FROM "+TABLE_NAME+" WHERE Status=TRUE";
+    private String GET_ALL_PATIENTS_WITH_STATUS_FALSE = "SELECT * FROM "+TABLE_NAME+" WHERE Status=FALSE";
+    private String GET_PATIENT_BY_ID_WITH_ALL_ANALYZES = "SELECT * FROM "+ TABLE_NAME +" WHERE id =? AND Status = TRUE";
 
     public boolean createPatientTable() {
         try{
@@ -136,10 +142,10 @@ public class PatientDAO {
             preparedStatement.setString(1, patient.getName());
             preparedStatement.setString(2, patient.getLastName());
             preparedStatement.setString(3,patient.getBirthDateInString());
-            preparedStatement.setLong(5, patient.getId());
             preparedStatement.setBoolean(4, patient.getStatus());
+            preparedStatement.setLong(5, patient.getId());
             preparedStatement.executeUpdate();
-            System.out.println("Patient with id " + patient.getFullName() + " was deleted!");
+            System.out.println("Patient with id " + patient.getFullName() + " was updateded!");
         }catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Couldn't update patient " + patient);
@@ -157,6 +163,7 @@ public class PatientDAO {
         return false;
     }
 
+
     public boolean addListPatients(List<Patient> patients) {
         try{
             connector.connect();
@@ -165,6 +172,7 @@ public class PatientDAO {
                 preparedStatement.setString(1, p.getName());
                 preparedStatement.setString(2, p.getLastName());
                 preparedStatement.setString(3, p.getBirthDateInString());
+                preparedStatement.setBoolean(4, p.getStatus());
                 preparedStatement.addBatch();
             }
             preparedStatement.executeBatch();
@@ -187,11 +195,11 @@ public class PatientDAO {
         return false;
     }
 
-    public Patient readPatientById(long id) {
+    public Patient getPatientById(long id) {
         Patient patient = null;
         try{
             connector.connect();
-            preparedStatement = connector.getConnection().prepareStatement(READ_PATIENT_BY_ID);
+            preparedStatement = connector.getConnection().prepareStatement(GET_PATIENT_BY_ID);
             preparedStatement.setLong(1, id);
             resultSet = preparedStatement.executeQuery();
             while(resultSet.next()) {
@@ -200,6 +208,7 @@ public class PatientDAO {
                         .setName(resultSet.getString(2))
                         .setLastName(resultSet.getString(3))
                         .setBirthDate(resultSet.getString(4))
+                        .setStatus(resultSet.getBoolean(5))
                         .build();
             }
         }catch (SQLException e) {
@@ -221,11 +230,10 @@ public class PatientDAO {
     }
 
     public Set<Patient> getAllPatients() {
-        String READ_ALL_PATIENTS = "SELECT * FROM Patients WHERE Status=1";
         Set<Patient> patients = new HashSet<>();
         try{
             connector.connect();
-            preparedStatement = connector.getConnection().prepareStatement(READ_ALL_PATIENTS);
+            preparedStatement = connector.getConnection().prepareStatement(GET_ALL_PATIENTS);
             resultSet = preparedStatement.executeQuery();
             while(resultSet.next()) {
                 patients.add(new Patient().newPatientBuilder()
@@ -233,8 +241,8 @@ public class PatientDAO {
                         .setName(resultSet.getString(2))
                         .setLastName(resultSet.getString(3))
                         .setBirthDate(resultSet.getString(4))
+                        .setStatus(resultSet.getBoolean(5))
                         .build());
-
             }
         }catch (SQLException e) {
             e.printStackTrace();
@@ -254,15 +262,46 @@ public class PatientDAO {
         return patients;
     }
 
+    public Set<Patient> getAllPatientsWithStatusFalse() {
+        Set<Patient> patients = new HashSet<>();
+        try{
+            connector.connect();
+            preparedStatement = connector.getConnection().prepareStatement(GET_ALL_PATIENTS_WITH_STATUS_FALSE);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                patients.add(new Patient().newPatientBuilder()
+                        .setId(resultSet.getInt(1))
+                        .setName(resultSet.getString(2))
+                        .setLastName(resultSet.getString(3))
+                        .setBirthDate(resultSet.getString(4))
+                        .setStatus(resultSet.getBoolean(5))
+                        .build());
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't read patients from table " + TABLE_NAME);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                resultSet.close();
+                preparedStatement.close();
+                connector.close();
+            } catch (SQLException e) {
+                System.out.println("Connection failed!");
+                e.printStackTrace();
+            }
+        }
+        return patients;
+    }
 
-    public boolean changeStatusPatient(Patient patient) {
+    public boolean changeStatusPatientToFalse(Patient patient) {
         try{
             connector.connect();
             preparedStatement = connector.getConnection().prepareStatement(UPDATE_PATIENT_STATUS);
-            preparedStatement.setBoolean(1, patient.getStatus());
-            preparedStatement.setLong(2, patient.getId());
+            preparedStatement.setLong(1, patient.getId());
             preparedStatement.executeUpdate();
-            System.out.println("Patients status with id " + patient.getFullName() + " was changed!");
+            System.out.println("Patients status with name " + patient.getFullName() + " was changed!");
         }catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Couldn't update patient status " + patient);
@@ -278,30 +317,29 @@ public class PatientDAO {
             }
         }
         return false;
-
-
     }
 
 
-
-    public Patient readPatientByIdWithAlalyzes(Patient patient) {
-        Patient pat = null;
+    public Patient getPatientByIdWithAllAnalyzes(long id) {
+       Patient patient = null;
         try{
             connector.connect();
-            preparedStatement = connector.getConnection().prepareStatement(READ_PATIENT_BY_ID);
-            preparedStatement.setLong(1, patient.getId());
+            preparedStatement = connector.getConnection().prepareStatement(GET_PATIENT_BY_ID_WITH_ALL_ANALYZES);
+            preparedStatement.setLong(1, id);
             resultSet = preparedStatement.executeQuery();
             while(resultSet.next()) {
-                pat = Patient.newPatientBuilder()
-                        .setId(resultSet.getInt(1))
+                patient = Patient.newPatientBuilder()
+                        .setId(resultSet.getLong(1))
                         .setName(resultSet.getString(2))
                         .setLastName(resultSet.getString(3))
                         .setBirthDate(resultSet.getString(4))
+                        .setStatus(resultSet.getBoolean(5))
+                        .setAnalyzes(new ArrayList<>(new AnalyzesDAO().getAllAnalyzesByPatientId(resultSet.getLong(1))))
                         .build();
             }
         }catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Couldn't find patient " + patient.getName());
+            System.out.println("Couldn't find patient with id" + id);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -314,8 +352,13 @@ public class PatientDAO {
                 e.printStackTrace();
             }
         }
-        return pat;
+        return patient;
     }
+
+
+
+
+
 
 
 }

@@ -222,7 +222,7 @@ public class AnalyzesDAO {
         return analysis;
     }
 
-    public List<Analysis> readAllAnalyzesFromDB() {
+    public List<Analysis> getAllAnalyzes() {
         List<Analysis> analyzes = new ArrayList<>();
         try{
             connector.connect();
@@ -255,7 +255,7 @@ public class AnalyzesDAO {
     }
 
 
-    public List<Analysis> readAllAnalyzesByPatient(Patient patient) {
+    public List<Analysis> getAllAnalyzesByPatient(Patient patient) {
         List<Analysis> analyzes = new ArrayList<>();
         try{
             connector.connect();
@@ -289,7 +289,7 @@ public class AnalyzesDAO {
     }
 
 
-    public List<Analysis> readAllAnalyzesByPatientID(long id) {
+    public List<Analysis> getAllAnalyzesByPatientId(long id) {
         List<Analysis> analyzes = new ArrayList<>();
         try{
             connector.connect();
