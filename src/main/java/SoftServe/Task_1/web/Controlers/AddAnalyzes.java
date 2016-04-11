@@ -35,7 +35,6 @@ public class AddAnalyzes extends HttpServlet {
         System.out.println(patient);
 
 
-
         String type = request.getParameter("type");
         String report = request.getParameter("report");
         String date = request.getParameter("date");

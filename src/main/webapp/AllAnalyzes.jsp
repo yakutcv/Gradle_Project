@@ -52,7 +52,7 @@
         </c:forEach>
         </table>
 
-        <a class="btn btn-default btn-lg" role="button" href = "<c:url value = "Patients"/>">
+        <a class="btn btn-default btn-lg" role="button" href = "<c:url value ="Patients"/>">
             <span class="glyphicon glyphicon-arrow-left"></span> Go back to the list with all patients </a>
 
         <a class="btn btn-success btn-lg" role="button" href = "<c:url value = "AddAnalyzes?id=${patient.id}"/>">

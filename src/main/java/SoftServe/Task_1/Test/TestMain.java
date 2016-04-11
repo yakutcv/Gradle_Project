@@ -141,7 +141,6 @@ public class TestMain {
         //System.out.println(hosp2);
         PatientDAO ptDAO = new PatientDAO();
 
-        ptDAO.changeStatusPatientToFalse(new PatientDAO().getPatientById(3));
 
         //ptDAO.addListPatients(listPatients);
 

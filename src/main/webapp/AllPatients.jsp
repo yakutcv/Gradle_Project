@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -20,24 +20,6 @@
     <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 
-    <script>
-        $(document).ready(function(){
-            $("#mytable #checkall").click(function () {
-                if ($("#mytable #checkall").is(':checked')) {
-                    $("#mytable input[type=checkbox]").each(function () {
-                        $(this).prop("checked", true);
-                    });
-
-                } else {
-                    $("#mytable input[type=checkbox]").each(function () {
-                        $(this).prop("checked", false);
-                    });
-                }
-            });
-
-            $("[data-toggle=tooltip]").tooltip();
-        });
-    </script>
 
 
     <title>All Patients</title>
@@ -45,8 +27,6 @@
 </head>
 
 <body>
-
-
 
 <c:set var="count" value="${1}"/>
 
@@ -78,11 +58,8 @@
                         <td>
                                 <form class="col-sm-5" name = "listAnalyzes" action ="AllAnalyzes?id=${patient.id}" method = "POST">
                                 <p data-placement="top" data-toggle="tooltip" title="Analyzes">
-
-                                    <button class="btn btn-success" data-title="Analyzes" >
-                                        <span class="glyphicon glyphicon-tint"> </span>
-                                    </button>
-                                </p>
+                                    <button class="btn btn-success" data-title="Analyzes">
+                                        <span class="glyphicon glyphicon-tint"> </span></button></p>
                             </form>
                         </td>
 
@@ -95,13 +72,18 @@
                         </td>
 
                         <td>
+                           <%-- <form class="col-sm-5" name = "deleteAnalyzes" action ="DeletePatient?id=${patient.id}" method = "GET">--%>
                             <div class="col-sm-5">
-                            <p data-placement="top" data-toggle="tooltip" title="Delete"><button onclick="${patient}" class="btn btn-danger" data-title="Delete" data-toggle="modal" data-target="#delete">
-                            <span class="glyphicon glyphicon-trash"></span></button></p>
-                             </div>
-
+                                <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                    <button  class="btn btn-danger" id="deletePatient" data-id="${patient.id}" data-name="${patient.name}" data-href="DeletePatient?id=${patient.id}" data-toggle="modal" data-target="#myModal">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                                </p>
+                            </div>
+                           <%-- </form>--%>
                           <%--  modal--%>
-                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -109,17 +91,21 @@
                                             <h4 class="modal-title custom_align" id="Heading">Delete patient</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete patient ${patient.name} ${patient.lastName} ?</div>
+
+                                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> <p class="debug-url"> <%--Are you sure you want to delete patient ${patient.name} ${patient.lastName} ?--%></p></div>
                                         </div>
-                                        <div class="modal-footer ">
-                                            <a class="btn btn-success" type="submit" href = "<c:url value ="DeletePatient?id=${patient.id}"/>"><span class="glyphicon glyphicon-ok-sign"></span>Yes</a>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                                        <div class="modal-footer">
+
+                                               <%-- <button class="btn btn-success" id ="deleteButton" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes </button>--%>
+
+                                                <a class="btn btn-success" id ="deleteButton" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes <a/>
+
+                                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                        <%-- end modal--%>
-
                         </td>
                     </tr>
 
@@ -170,8 +156,21 @@
 </div>
 --%>
 
+<script>
 
+    $('#myModal').on('show.bs.modal', function(e) {
+        /*alert(e.relatedTarget);*/
 
+        var parsedString = $(e.relatedTarget).data('href');
+
+        var name = $(e.relatedTarget).data('name');
+        var id = $(e.relatedTarget).data('id');
+        $(this).find('#deleteButton').attr('href', 'DeletePatient?id='+id);
+        //$(this).find('#deleteButton').attr('href', 'DeletePatient?id='+id);//$(e.relatedTarget).data('href'));
+
+        $('.debug-url').html('Are you sure you want to delete patient <strong>' + name +" ?" + '</strong>');
+    });
+</script>
 
 </body>
 </html>

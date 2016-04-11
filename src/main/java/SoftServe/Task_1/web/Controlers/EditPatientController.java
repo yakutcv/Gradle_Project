@@ -30,8 +30,6 @@ public class EditPatientController extends HttpServlet {
         String name = request.getParameter("name");
         String lastName = request.getParameter("lastName");
         String birthDate = request.getParameter("birthDate");
-        System.out.println(birthDate);
-
 
 
         if(!validBirthDate(birthDate)) {
