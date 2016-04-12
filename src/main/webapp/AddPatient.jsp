@@ -31,6 +31,7 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/validate.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -39,9 +40,7 @@
             });
         });
     </script>
-
 </head>
-
 
 <body>
 
@@ -80,30 +79,15 @@
                                     <input type="text" name="name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
                                 </div>
 
-
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Last name</label>
                                     <input type="text" name="lastName" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
                                 </div>
 
-                               <%-- <div class="form-group">
-                                    <label class="control-label" for="datetimepicker4">Birth Date</label>
-                                    &lt;%&ndash;<input type="text" name="birthDate" placeholder="Birth Date..." class="form-control" id="datetimepicker4">&ndash;%&gt;
-                                    <div class="col-sm-8">
-                                    <input type='text' class="form-control" id='datetimepicker4' name="birthDate" placeholder="Birth Date" />
-                                    </div>
-                                </div>--%>
-
                                 <div class="form-group">
                                     <label for="datetimepicker4" class="col-sm-2 control-label sr-only">Birth Date</label>
                                         <input type='text' class="form-control" id='datetimepicker4' name="birthDate" placeholder="Birth Date"/>
                                 </div>
-
-                                <%--<div class="form-group">
-                                    <label class="sr-only" for="form-about-yourself">About yourself</label>
-				                        	<textarea name="form-about-yourself" placeholder="About yourself..."
-                                                      class="form-about-yourself form-control" id="form-about-yourself"></textarea>
-                                </div>--%>
 
                                 <button type="submit" class="btn">Add Patient</button>
                             </form>

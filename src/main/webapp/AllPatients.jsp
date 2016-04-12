@@ -20,8 +20,6 @@
     <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 
-
-
     <title>All Patients</title>
 
 </head>
@@ -72,7 +70,7 @@
                         </td>
 
                         <td>
-                           <%-- <form class="col-sm-5" name = "deleteAnalyzes" action ="DeletePatient?id=${patient.id}" method = "GET">--%>
+
                             <div class="col-sm-5">
                                 <p data-placement="top" data-toggle="tooltip" title="Delete">
                                     <button  class="btn btn-danger" id="deletePatient" data-id="${patient.id}" data-name="${patient.name}" data-href="DeletePatient?id=${patient.id}" data-toggle="modal" data-target="#myModal">
@@ -108,7 +106,6 @@
                        <%-- end modal--%>
                         </td>
                     </tr>
-
                     </tbody>
 
             </div>
@@ -159,14 +156,10 @@
 <script>
 
     $('#myModal').on('show.bs.modal', function(e) {
-        /*alert(e.relatedTarget);*/
-
-        var parsedString = $(e.relatedTarget).data('href');
 
         var name = $(e.relatedTarget).data('name');
         var id = $(e.relatedTarget).data('id');
         $(this).find('#deleteButton').attr('href', 'DeletePatient?id='+id);
-        //$(this).find('#deleteButton').attr('href', 'DeletePatient?id='+id);//$(e.relatedTarget).data('href'));
 
         $('.debug-url').html('Are you sure you want to delete patient <strong>' + name +" ?" + '</strong>');
     });
