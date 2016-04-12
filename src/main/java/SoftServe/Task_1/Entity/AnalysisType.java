@@ -19,6 +19,8 @@ public enum AnalysisType implements Serializable {
     RH_FACTOR,
     @XmlEnumValue(value = "Allergy")
     ALLERGY,
+    @XmlEnumValue(value = "Allergy")
+    ALLERGY_2,
     @XmlEnumValue(value = "Patient don's passed any analyzes")
     DEFAULT
 }

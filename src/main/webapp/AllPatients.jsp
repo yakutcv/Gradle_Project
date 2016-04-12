@@ -34,7 +34,6 @@
         <div class="col-md-12">
             <h4>All Patients</h4>
             <div class="table-responsive">
-
                 <table id="mytable" class="table table-bordred table-striped">
                     <thead>
                     <th>#</th>
@@ -54,10 +53,10 @@
                         <td>${patient.lastName} </td>
                         <td>${patient.getBirthDateInString()}</td>
                         <td>
-                                <form class="col-sm-5" name = "listAnalyzes" action ="AllAnalyzes?id=${patient.id}" method = "POST">
+
+                            <form class="col-sm-5" name = "listAnalyzes" action ="AllAnalyzes?id=${patient.id}" method = "POST">
                                 <p data-placement="top" data-toggle="tooltip" title="Analyzes">
-                                    <button class="btn btn-success" data-title="Analyzes">
-                                        <span class="glyphicon glyphicon-tint"> </span></button></p>
+                                    <button class="btn btn-success" data-title="Analyzes"><span class="glyphicon glyphicon-tint"> </span></button></p>
                             </form>
                         </td>
 
@@ -73,7 +72,7 @@
 
                             <div class="col-sm-5">
                                 <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                    <button  class="btn btn-danger" id="deletePatient" data-id="${patient.id}" data-name="${patient.name}" data-href="DeletePatient?id=${patient.id}" data-toggle="modal" data-target="#myModal">
+                                    <button  class="btn btn-danger" id="deletePatient" data-values="DeletePatient?id=,${patient.id},${patient.name}" data-toggle="modal" data-target="#myModal">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                                 </p>
@@ -107,14 +106,11 @@
                         </td>
                     </tr>
                     </tbody>
-
             </div>
             <input type="hidden" id="tmpId" value = "patientId" name = "id" value="${patient.getId()}">
         </div>
-
         </c:forEach>
         </table>
-
         <form name = "goIndex" action = "Patients" method = "POST">
             <button type="submit" class="btn btn-default btn-lg"> <span class="glyphicon glyphicon-arrow-left"></span>Go back to the main page</button>
         </form>
@@ -156,11 +152,14 @@
 <script>
 
     $('#myModal').on('show.bs.modal', function(e) {
+       /* var id = $(e.relatedTarget).data('id');*/
+       /*  var name = $(e.relatedTarget).data('name');*/
 
-        var name = $(e.relatedTarget).data('name');
-        var id = $(e.relatedTarget).data('id');
-        $(this).find('#deleteButton').attr('href', 'DeletePatient?id='+id);
-
+        var Selection = $(e.relatedTarget).data('values').split(",");
+        var name = Selection[2];
+        var id = Selection[1];
+        var action = Selection[0];
+        $(this).find('#deleteButton').attr('href', action+id);
         $('.debug-url').html('Are you sure you want to delete patient <strong>' + name +" ?" + '</strong>');
     });
 </script>

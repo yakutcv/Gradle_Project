@@ -1,14 +1,13 @@
 
 jQuery(document).ready(function() {
 	
-    /*
-        Fullscreen background
-    */
+       /* Fullscreen background*/
+
+
     $.backstretch("assets/img/backgrounds/1.jpg");
     
-    /*
-        Login form validation
-    */
+        /*Login form validation*/
+
     $('.login-form input[type="text"], .login-form input[type="password"], .login-form textarea').on('focus', function() {
     	$(this).removeClass('input-error');
     });
@@ -27,9 +26,8 @@ jQuery(document).ready(function() {
     	
     });
     
-    /*
-        Registration form validation
-    */
+        /*Registration form validation*/
+
     $('.registration-form input[type="text"], .registration-form textarea').on('focus', function() {
     	$(this).removeClass('input-error');
     });
@@ -47,6 +45,21 @@ jQuery(document).ready(function() {
     	});
     	
     });
-    
-    
+
 });
+
+function checkEqualsPatient(event){
+    var fistName = $('#form-first-name').val();
+    var lastName =  $('#form-last-name').val();
+    var date =  $('#datetimepicker4').val();
+    $.get('AddPatient',{'name':fistName,'lastName':lastName, 'birthDate':date}, function (data) {
+        if(data == 'Same') {
+            event.preventDefault();
+            $('#error_message').css({'display':'inline'});
+
+        } else{
+            $.post('AddPatient',{'name':fistName,'lastName':lastName, 'birthDate':date});
+            window.location.replace("/Patients")
+        }
+    });
+}

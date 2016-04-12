@@ -40,7 +40,6 @@
 </head>
 
 <body>
-
 <!-- Top content -->
 <div class="top-content">
 
@@ -70,17 +69,17 @@
 
                 <div class="form-group">
                   <label class="sr-only" for="form-first-name">First name</label>
-                  <input type="text" name="name" placeholder="${patient2.name}" class="form-first-name form-control" id="form-first-name">
+                  <input type="text" name="name" value="${patient2.name}" class="form-first-name form-control" id="form-first-name">
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="form-last-name">Last name</label>
-                  <input type="text" name="lastName" placeholder="${patient2.lastName}" class="form-last-name form-control" id="form-last-name">
+                  <input type="text" name="lastName" value ="${patient2.lastName}" class="form-last-name form-control" id="form-last-name">
                 </div>
 
                 <div class="form-group">
                   <label for="datetimepicker4" class="col-sm-2 control-label sr-only">Birth Date</label>
-                  <input type='text' class="form-control" id='datetimepicker4' name="birthDate" placeholder="${patient2.getBirthDateInString()}"/>
+                  <input type='text' class="form-control" value ="${patient2.getBirthDateInString()}" id='datetimepicker4' name="birthDate" />
                 </div>
 
                 <button type="submit" class="btn">Edit Patient</button>
@@ -91,13 +90,10 @@
               <form name = "goToPatietnsList" action = "Patients">
                   <button type="submit" class="btn btn-primary">Go back to the list with all patients</button>
               </form>
-
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
 

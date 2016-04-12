@@ -36,7 +36,6 @@ public class AllPatientController extends HttpServlet {
             e.printStackTrace();
             //out.print("Can't view all patients from DB");
         }
-
         request.setAttribute("patients", patients);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("AllPatients.jsp");

@@ -5,6 +5,7 @@ package SoftServe.Task_1.Test;
  */
 
 import SoftServe.Task_1.Entity.Analysis;
+import SoftServe.Task_1.Entity.AnalysisType;
 import SoftServe.Task_1.Entity.Patient;
 import SoftServe.Task_1.IO.SQL.AnalyzesDAO;
 import SoftServe.Task_1.IO.SQL.PatientDAO;
@@ -12,6 +13,7 @@ import SoftServe.Task_1.IO.SelfFormatIO;
 import SoftServe.Task_1.Logic.Hospital;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static SoftServe.Task_1.Entity.AnalysisType.*;

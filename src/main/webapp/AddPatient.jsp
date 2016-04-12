@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
 
-
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css"/>
@@ -58,6 +57,7 @@
 
             <div class="row">
 
+                <p id="error_message" style="display: none">Same patient</p>
 
                 <div class="col-sm-6 col-sm-offset-3">
                     <div class="form-box">
@@ -72,11 +72,11 @@
                         </div>
 
                         <div class="form-bottom">
-                            <form role="form" name="AddPatient" action="AddPatient" method="GET" class="registration-form">
+                            <form <%--role="form"--%> class="registration-form">
 
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">First name</label>
-                                    <input type="text" name="name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
+                                    <input type="text" name="name" class="form-control" id="form-first-name">
                                 </div>
 
                                 <div class="form-group">
@@ -89,21 +89,28 @@
                                         <input type='text' class="form-control" id='datetimepicker4' name="birthDate" placeholder="Birth Date"/>
                                 </div>
 
-                                <button type="submit" class="btn">Add Patient</button>
+                                <div class="form-group">
+                                    <label for="bbbb" class="col-sm-2 control-label sr-only">Adddd</label>
+                                    <input type='text' class="form-control" id='bbbb' name="date"
+                                           placeholder="Date..."/>
+                                </div>
+
+
+                              <%--  <button type = "submit" class="btn" onclick="checkEqualsPatient(event)" >Add Patient</button>--%>
+                                <a type = "submit" class="btn" onclick="checkEqualsPatient(event)">Add Patient</a>
+
+
                             </form>
+                            <button class="btn" onclick="checkEqualsPatient(event)">Check</button>
 
                             <form name = "goIndex" action = "Patients" method = "POST">
                                 <button type="submit" class="btn btn-primary">Go back to the main page</button>
                             </form>
 
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -139,9 +146,64 @@
 <script src="assets/js/scripts.js"></script>
 
 
-<!--[if lt IE 10]>
+
 <script src="assets/js/placeholder.js"></script>
-<![endif]-->
+
+<script>
+/*function checkEqualsPatient(event) {
+
+    $('.registration-form input[type="text"], .registration-form textarea').on('focus', function() {
+        $(this).removeClass('input-error');
+    });
+
+    $('.registration-form').on('submit', function(e) {
+        $(this).find('input[type="text"], textarea').each(function(){
+            if( $(this).val() == "" ) {
+                e.preventDefault();
+                $(this).addClass('input-error');
+            }
+            else {
+                $(this).removeClass('input-error');
+            }
+        });
+
+    });*/
+
+
+
+/*
+    var fistName = $('#form-first-name').val();
+    var lastName =  $('#form-last-name').val();
+    var date =  $('#datetimepicker4').val();
+    $.get('AddPatient',{'name':fistName,'lastName':lastName, 'birthDate':date}, function (data) {
+        if(data == 'Same') {
+            event.preventDefault();
+            $('#error_message').css({'display':'inline'});
+
+
+
+
+
+        } else{
+            $.post('AddPatient',{'name':fistName,'lastName':lastName, 'birthDate':date});
+            window.location.replace("/Patients")
+        }
+    });
+}
+*/
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
 
 </body>
 

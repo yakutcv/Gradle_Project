@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static SoftServe.Task_1.IO.Validators.SelfFormatValidator.*;
@@ -28,12 +30,8 @@ public class AddAnalyzes extends HttpServlet {
         String id = request.getParameter("id");
 
         System.out.println(id);
-
         Patient patient = new PatientDAO().getPatientById(Long.parseLong(id));
         List<Analysis> analyzes = new ArrayList<>();
-
-        System.out.println(patient);
-
 
         String type = request.getParameter("type");
         String report = request.getParameter("report");
@@ -81,8 +79,12 @@ public class AddAnalyzes extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        List<AnalysisType> analysisTypes = Arrays.asList(AnalysisType.values());
         Patient patient = new PatientDAO().getPatientById(Long.parseLong(request.getParameter("id")));
+
         request.setAttribute("patient", patient);
+        request.setAttribute("analysisTypes", analysisTypes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("AddAnalyzes.jsp");
         dispatcher.forward(request, response);
     }

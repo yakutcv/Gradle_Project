@@ -61,7 +61,6 @@
                         <div class="form-top">
                             <div class="form-top-left">
                                 <h3>Patient ${patient.getFullName()}</h3>
-
                                 <p>To add a new analyzes, please fill all fields:</p>
                             </div>
                             <div class="form-top-right">
@@ -74,13 +73,9 @@
                                 <div class="form-group">
                                     <label class="sr-only control-label" for="inputType">Type Analyzes</label>
                                     <select name="type" class="form-control" id="inputType">
-                                        <option value="DEFAULT">Analyzes Type...</option>
-                                        <option value="BLOOD">Blood</option>
-                                        <option value="URINE">Urine</option>
-                                        <option value="BIOPSY">Biopsy</option>
-                                        <option value="HORMONES">Hormones</option>
-                                        <option value="RH_FACTOR">RH_FACTOR</option>
-                                        <option value="ALLERGY">Allegry</option>
+                                        <c:forEach items = "${analysisTypes}" var = "oneType">
+                                        <option value="${oneType}">${oneType}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -88,6 +83,12 @@
                                     <input type='text' class="form-control" id='datetimepicker4' name="date"
                                            placeholder="Date..."/>
                                 </div>
+
+
+
+
+
+
                                 <div class="form-group">
                                     <label class="sr-only" for="inputReport">Report</label>
                                     <textarea name="report" placeholder="Report..." class="form-report form-control"
@@ -100,8 +101,6 @@
                             <form name="goToListWithAnalyzes" action="AllAnalyzes?id=${patient.getId()}" method="POST">
                                 <button type="submit" class="btn btn-primary">Go back to the list with Analyzes</button>
                             </form>
-
-
                         </div>
                     </div>
                 </div>
@@ -124,7 +123,6 @@
                 <div class="footer-border"></div>
                 <p>Made by Andrew Jasinskiy having a lot of fun. <i class="fa fa-smile-o"></i></p>
             </div>
-
         </div>
     </div>
 </footer>
