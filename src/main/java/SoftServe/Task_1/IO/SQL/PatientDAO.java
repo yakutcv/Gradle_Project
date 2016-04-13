@@ -6,10 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by ayasintc on 4/5/2016.
@@ -229,8 +226,11 @@ public class PatientDAO {
         return patient;
     }
 
-    public Set<Patient> getAllPatients() {
-        Set<Patient> patients = new HashSet<>();
+    public synchronized List<Patient> getAllPatients() {
+        Thread th = new Thread();
+
+        th.start();
+        List<Patient> patients = new ArrayList<>();
         try{
             connector.connect();
             preparedStatement = connector.getConnection().prepareStatement(GET_ALL_PATIENTS);
@@ -259,11 +259,12 @@ public class PatientDAO {
                 e.printStackTrace();
             }
         }
+        Collections.sort(patients);
         return patients;
     }
 
-    public Set<Patient> getAllPatientsWithStatusFalse() {
-        Set<Patient> patients = new HashSet<>();
+    public List<Patient> getAllPatientsWithStatusFalse() {
+        List<Patient> patients = new ArrayList<>();
         try{
             connector.connect();
             preparedStatement = connector.getConnection().prepareStatement(GET_ALL_PATIENTS_WITH_STATUS_FALSE);
@@ -292,6 +293,7 @@ public class PatientDAO {
                 e.printStackTrace();
             }
         }
+        Collections.sort(patients);
         return patients;
     }
 

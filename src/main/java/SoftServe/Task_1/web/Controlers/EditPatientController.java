@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static SoftServe.Task_1.IO.Validators.SelfFormatValidator.validBirthDate;
@@ -61,7 +63,7 @@ public class EditPatientController extends HttpServlet {
             //out.print("Can't add patient into DB");
         }
 
-        Set<Patient> patients = new HashSet<>();
+        List<Patient> patients = new ArrayList<>();
 
         try {
             patients = new PatientDAO().getAllPatients();

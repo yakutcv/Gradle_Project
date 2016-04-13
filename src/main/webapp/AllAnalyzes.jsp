@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -19,6 +19,7 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
+
 
     <title>All Analyzes</title>
 </head>
@@ -36,6 +37,7 @@
                     <th>Type Analyzes</th>
                     <th>Date</th>
                     <th>Report</th>
+                    <th>Delete</th>
                     </thead>
                     <c:forEach items = "${analyzes}" var = "analysis">
                     <tbody>
@@ -45,6 +47,38 @@
                         <td>${analysis.getType()}</td>
                         <td>${analysis.getDateInString()} </td>
                         <td>${analysis.getReport()}</td>
+                        <td>
+
+                            <div class="col-sm-5">
+                                <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                    <button  class="btn btn-danger" id="deletePatient" data-values="DeleteAnalysis?idP=,${patient.id},&idA=${analysis.id},${analysis.getType()},${analysis.getDateInString()}" data-toggle="modal" data-target="#myModal">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </p>
+                            </div>
+
+                          <%-- modal window --%>
+
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                            <h4 class="modal-title custom_align" id="Heading">Delete Analysis</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span><p class="debug-url"></p></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a class="btn btn-success" id ="deleteButton" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </td>
                     </tr>
                     </tbody>
             </div>
@@ -58,9 +92,31 @@
         <a class="btn btn-success btn-lg" role="button" href = "<c:url value = "AddAnalyzes?id=${patient.id}"/>">
             <span class="glyphicon glyphicon-plus"></span> Add </a>
 
-        <input type="hidden" name = "id" value="${patient.id}">
+        <input type="hidden" id="tmpId" value = "patientId" name = "id" value="${patient.getId()}">
 
     </div>
 </div>
+
+<script>
+    $('#myModal').on('show.bs.modal', function(e) {
+        /* var id = $(e.relatedTarget).data('id');*/
+        /*  var name = $(e.relatedTarget).data('name');*/
+
+        var Selection = $(e.relatedTarget).data('values').split(",");
+
+
+        var action = Selection[0];
+        var patientId = Selection[1];
+        var analysisId = Selection[2];
+        var analysisType = Selection[3];
+        var analysisDate = Selection[4];
+
+        alert(action +patientId+analysisId);
+        $(this).find('#deleteButton').attr('href', action+patientId+analysisId);
+        $('.debug-url').html('Are you really want to delete analysis <strong>' + analysisType + " by " + analysisDate + "?" + '</strong>');
+    });
+</script>
+
+
 </body>
 </html>

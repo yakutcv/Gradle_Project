@@ -221,7 +221,7 @@
 
 <!-- Map -->
 <section id="contact" class="map">
-    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2654.6171707800145!2d25.92740445140565!3d48.29098047913403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47340899274fc38b%3A0xc7f96ad06ec3980a!2z0LLRg9C7LiDQm9C10YHRliDQo9C60YDQsNGX0L3QutC4LCAxMSwg0KfQtdGA0L3RltCy0YbRliwg0KfQtdGA0L3RltCy0LXRhtGM0LrQsCDQvtCx0LvQsNGB0YLRjA!5e0!3m2!1suk!2sua!4v1460325968926" width="600" height="450" frameborder="0" style="border:0" allowfullscreen"></iframe>
+    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2654.6171707800145!2d25.92740445140565!3d48.29098047913403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47340899274fc38b%3A0xc7f96ad06ec3980a!2z0LLRg9C7LiDQm9C10YHRliDQo9C60YDQsNGX0L3QutC4LCAxMSwg0KfQtdGA0L3RltCy0YbRliwg0KfQtdGA0L3RltCy0LXRhtGM0LrQsCDQvtCx0LvQsNGB0YLRjA!5e0!3m2!1suk!2sua!4v1460325968926" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 </section>
 
 <!-- Footer -->

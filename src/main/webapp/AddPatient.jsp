@@ -16,28 +16,14 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/form-elements.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" />
-    <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>>
-
-
     <script type="text/javascript">
         var d = new Date();
-
-
-
         $(function () {
             $('#datetimepicker4').datetimepicker({
-                defaultDate: "1/1/1990",
                 format: 'MM/DD/YYYY',
                 maxDate:d
             });
@@ -47,12 +33,10 @@
 </head>
 
 <body>
-<!-- Top content -->
-<div class="top-content">
 
+<div class="top-content">
     <div class="inner-bg">
         <div class="container">
-
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text">
                     <h2 id="error_message" style="display: none"> </h2>
@@ -99,7 +83,6 @@
 
                             </div>
 
-
                             <form name = "goToPatietnsList" action = "Patients" method = "POST">
                                 <button type="submit" class="btn btn-primary">Go back to the main page</button>
                             </form>
@@ -135,13 +118,10 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
-
+<script type="text/javascript" src="noty/js/noty/packaged/jquery.noty.packaged.min.js"></script>
 <script src="assets/js/jquery.backstretch.min.js"></script>
 <script src="assets/js/myScripts.js"></script>
 
-<!--[if lt IE 10]>
-<script src="assets/js/placeholder.js"></script>
-<![endif]-->
 
 </body>
 </html>

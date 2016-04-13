@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -42,8 +44,9 @@ public class DeletePatient extends HttpServlet {
             }
 
         }
-        Set<Patient> patients = new HashSet<>();
-        try {
+        List<Patient> patients = new ArrayList<>();
+
+        try{
             patients = new PatientDAO().getAllPatients();
         } catch (Exception e) {
         }

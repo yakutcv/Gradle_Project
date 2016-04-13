@@ -27,7 +27,7 @@ import java.util.List;
         "listAnalyzes"
 })
 
-public class Patient implements Serializable {
+public class Patient implements Comparable<Patient> {
 
     public Patient(long id) {
         this.id = id;
@@ -116,6 +116,11 @@ public class Patient implements Serializable {
     //builder
     public static PatientBuilder newPatientBuilder () {
         return new Patient().new PatientBuilder();
+    }
+
+    @Override
+    public int compareTo(Patient o) {
+        return this.getLastName().compareTo(o.getLastName());
     }
 
     public class PatientBuilder {

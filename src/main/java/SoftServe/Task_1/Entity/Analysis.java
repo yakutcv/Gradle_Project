@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
+import java.util.Objects;
 
 
 @XmlRootElement(name="Analysis")
@@ -19,7 +20,7 @@ import java.io.Serializable;
         "date",
         "report"
 })
-public class Analysis implements Serializable {
+public class Analysis implements Comparable<Analysis> {
 
     @XmlAttribute(name="id")
     private long id;
@@ -63,6 +64,12 @@ public class Analysis implements Serializable {
 
     public static AnalysisBuilder newAnalysisBuilder () {
         return new Analysis().new AnalysisBuilder();
+    }
+
+
+    @Override
+    public int compareTo(Analysis o) {
+        return this.getDate().compareTo(o.getDate());
     }
 
     public class AnalysisBuilder {

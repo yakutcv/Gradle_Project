@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -34,7 +36,7 @@ public class AddPatient extends HttpServlet {
                 .setName(name)
                 .build();
 
-        Set<Patient> tmpPatients;
+        List<Patient> tmpPatients;
 
         try {
             tmpPatients = new PatientDAO().getAllPatients();
@@ -63,7 +65,11 @@ public class AddPatient extends HttpServlet {
                 .setStatus(true)
                 .build();
 
-        Set<Patient> patients = new HashSet<>();
+        try{
+            new PatientDAO().addPatient(patient);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
        /*
         Set<Patient> tmpPatients = new HashSet<>();
@@ -85,9 +91,9 @@ public class AddPatient extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }*/
+        List<Patient> patients = new ArrayList<>();
 
         try{
-            new PatientDAO().addPatient(patient);
             patients = new PatientDAO().getAllPatients();
         }catch (Exception e) {
             e.printStackTrace();

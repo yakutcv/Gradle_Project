@@ -36,8 +36,8 @@
                 <table id="mytable" class="table table-bordred table-striped">
                     <thead>
                     <th>#</th>
-                    <th>First Name</th>
                     <th>Last Name</th>
+                    <th>First Name</th>
                     <th>Birthdate</th>
                     <th>Analyzes</th>
                     <th>Edit</th>
@@ -48,8 +48,8 @@
                     <tr>
                         <td><c:out value="${count}"/></td>
                         <c:set var="count" value="${count+1}"/>
-                        <td>${patient.name}</td>
-                        <td>${patient.lastName} </td>
+                        <td>${patient.lastName}</td>
+                        <td>${patient.name} </td>
                         <td>${patient.getBirthDateInString()}</td>
                         <td>
                             <form class="col-sm-5" name = "listAnalyzes" action ="AllAnalyzes?id=${patient.id}" method = "POST">
@@ -148,6 +148,7 @@
         var name = Selection[2];
         var id = Selection[1];
         var action = Selection[0];
+        alert(action+id);
         $(this).find('#deleteButton').attr('href', action+id);
         $('.debug-url').html('Are you sure you want to delete patient <strong>' + name +" ?" + '</strong>');
     });

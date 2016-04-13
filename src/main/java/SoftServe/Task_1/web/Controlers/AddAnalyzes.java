@@ -29,9 +29,10 @@ public class AddAnalyzes extends HttpServlet {
 
         String id = request.getParameter("id");
 
-        System.out.println(id);
         Patient patient = new PatientDAO().getPatientById(Long.parseLong(id));
+
         List<Analysis> analyzes = new ArrayList<>();
+
 
         String type = request.getParameter("type");
         String report = request.getParameter("report");
@@ -69,7 +70,7 @@ public class AddAnalyzes extends HttpServlet {
         } catch (Exception e) {
         }
 
-        request.setAttribute("analyzes", analyzes);
+
         request.setAttribute("patient", patient);
 
 

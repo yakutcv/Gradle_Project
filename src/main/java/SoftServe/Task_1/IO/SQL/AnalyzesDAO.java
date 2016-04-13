@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -133,7 +135,7 @@ public class AnalyzesDAO {
         return false;
     }
 
-    public boolean deleteAnalysisById(int id) {
+    public boolean deleteAnalysisById(long id) {
         try{
             connector.connect();
             preparedStatement = connector.getConnection().prepareStatement(DELETE_ANALYSIS_BY_ID);
@@ -189,7 +191,7 @@ public class AnalyzesDAO {
         return false;
     }
 
-    public Analysis readAnalyzesById(long id) {
+    public Analysis getAnalyzesById(long id) {
         Analysis analysis = null;
         try{
             connector.connect();
@@ -251,6 +253,7 @@ public class AnalyzesDAO {
                 e.printStackTrace();
             }
         }
+        Collections.sort(analyzes);
         return analyzes;
     }
 
@@ -285,9 +288,9 @@ public class AnalyzesDAO {
                 e.printStackTrace();
             }
         }
+        Collections.sort(analyzes);
         return analyzes;
     }
-
 
     public List<Analysis> getAllAnalyzesByPatientId(long id) {
         List<Analysis> analyzes = new ArrayList<>();
@@ -319,6 +322,7 @@ public class AnalyzesDAO {
                 e.printStackTrace();
             }
         }
+        Collections.sort(analyzes);
         return analyzes;
     }
 
