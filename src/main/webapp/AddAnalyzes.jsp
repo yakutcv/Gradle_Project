@@ -32,18 +32,19 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 
     <script type="text/javascript">
+        var d = new Date();
         $(function () {
             $('#datetimepicker4').datetimepicker({
-                format: 'DD/MM/YYYY HH:mm'
+                format: 'DD/MM/YYYY HH:mm',
+                sideBySide: true,
+                maxDate:d
             });
         });
     </script>
-
 </head>
 
 
 <body>
-
 <!-- Top content -->
 <div class="top-content">
 

@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="assets/css/form-elements.css">
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" />
   <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
@@ -30,9 +30,11 @@
   <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 
   <script type="text/javascript">
+    var d = new Date();
     $(function () {
       $('#datetimepicker4').datetimepicker({
-        format:'DD/MM/YYYY'
+        format: 'MM/DD/YYYY',
+        maxDate:d
       });
     });
   </script>

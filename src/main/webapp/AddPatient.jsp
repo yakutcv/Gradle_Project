@@ -21,25 +21,25 @@
     <link rel="stylesheet" href="assets/css/form-elements.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" />
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>>
+
 
     <script type="text/javascript">
         var d = new Date();
-        d.setDate(date.getDate());
+
 
 
         $(function () {
             $('#datetimepicker4').datetimepicker({
-                format:'DD/MM/YYYY',
-                onRender:function(date) {
-                    return date.valueOf() > FromEndDate.valueOf() ? 'disabled' : '';
-                }
+                defaultDate: "1/1/1990",
+                format: 'MM/DD/YYYY',
+                maxDate:d
             });
         });
     </script>
@@ -90,10 +90,10 @@
 
                                 <div class="form-group">
                                     <label for="datetimepicker4" class="col-sm-2 control-label sr-only">Birth Date</label>
-                                    <input type='text' class="form-control" placeholder="Birthday..." id='datetimepicker4' name="birthDate"/>
+                                    <input type='text' class="form-control " placeholder="Birthday..." id='datetimepicker4' name="birthDate"/>
                                 </div>
 
-                                <button type="submit " class="btn form-control" onclick="checkEqualsPatient(event)">Add Patient</button>
+                                <button type="submit" class="btn form-control" onclick="checkEqualsPatient(event)">Add Patient</button>
 
                                 <input type="hidden" name = "id" value="${patient.getId()}">
 
