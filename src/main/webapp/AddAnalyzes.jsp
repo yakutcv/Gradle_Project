@@ -50,12 +50,6 @@
     <div class="inner-bg">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-2 text">
-                    <h1>Form to add a new analyzes</h1>
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <div class="form-box">
                         <div class="form-top">
@@ -83,11 +77,6 @@
                                     <input type='text' class="form-control" id='datetimepicker4' name="date"
                                            placeholder="Date..."/>
                                 </div>
-
-
-
-
-
 
                                 <div class="form-group">
                                     <label class="sr-only" for="inputReport">Report</label>
@@ -134,7 +123,7 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 
 <script src="assets/js/jquery.backstretch.min.js"></script>
-<script src="assets/js/scripts.js"></script>
+<script src="assets/js/myScripts.js"></script>
 
 
 <!--[if lt IE 10]>

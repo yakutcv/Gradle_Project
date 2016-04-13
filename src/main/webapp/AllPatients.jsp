@@ -30,7 +30,6 @@
 
 <div class="container">
     <div class="row">
-
         <div class="col-md-12">
             <h4>All Patients</h4>
             <div class="table-responsive">
@@ -53,13 +52,11 @@
                         <td>${patient.lastName} </td>
                         <td>${patient.getBirthDateInString()}</td>
                         <td>
-
                             <form class="col-sm-5" name = "listAnalyzes" action ="AllAnalyzes?id=${patient.id}" method = "POST">
                                 <p data-placement="top" data-toggle="tooltip" title="Analyzes">
                                     <button class="btn btn-success" data-title="Analyzes"><span class="glyphicon glyphicon-tint"> </span></button></p>
                             </form>
                         </td>
-
                         <td>
                             <form class="col-sm-5" name = "listAnalyzes" action = "EditPatientController?id=${patient.id}" method = "POST">
                                 <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn" data-title="Edit">
@@ -67,9 +64,7 @@
                                 </p>
                             </form>
                         </td>
-
                         <td>
-
                             <div class="col-sm-5">
                                 <p data-placement="top" data-toggle="tooltip" title="Delete">
                                     <button  class="btn btn-danger" id="deletePatient" data-values="DeletePatient?id=,${patient.id},${patient.name}" data-toggle="modal" data-target="#myModal">
@@ -80,7 +75,6 @@
                            <%-- </form>--%>
                           <%--  modal--%>
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -88,15 +82,10 @@
                                             <h4 class="modal-title custom_align" id="Heading">Delete patient</h4>
                                         </div>
                                         <div class="modal-body">
-
-                                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> <p class="debug-url"> <%--Are you sure you want to delete patient ${patient.name} ${patient.lastName} ?--%></p></div>
+                                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span><p class="debug-url"></p></div>
                                         </div>
                                         <div class="modal-footer">
-
-                                               <%-- <button class="btn btn-success" id ="deleteButton" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes </button>--%>
-
-                                                <a class="btn btn-success" id ="deleteButton" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes <a/>
-
+                                                <a class="btn btn-success" id ="deleteButton" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</a>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No</button>
                                         </div>
                                     </div>

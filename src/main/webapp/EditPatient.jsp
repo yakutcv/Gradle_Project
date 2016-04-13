@@ -44,19 +44,15 @@
 <div class="top-content">
 
   <div class="inner-bg">
+
     <div class="container">
 
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2 text">
-          <h1>Form to edit patient</h1>
-        </div>
-      </div>
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
           <div class="form-box">
             <div class="form-top">
               <div class="form-top-left">
-                <h3>${patient2.getFullName()}</h3>
+                <h3>Edit patient ${patient2.getFullName()}</h3>
                 <p>For edit patient, please fill all fields:</p>
               </div>
               <div class="form-top-right">
@@ -125,7 +121,7 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 
 <script src="assets/js/jquery.backstretch.min.js"></script>
-<script src="assets/js/scripts.js"></script>
+<script src="assets/js/myScripts.js"></script>
 
 <!--[if lt IE 10]>
 <script src="assets/js/placeholder.js"></script>

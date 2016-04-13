@@ -48,6 +48,8 @@ jQuery(document).ready(function() {
 
 });
 
+
+//ajax post and get
 function checkEqualsPatient(event){
     var fistName = $('#form-first-name').val();
     var lastName =  $('#form-last-name').val();
@@ -55,7 +57,9 @@ function checkEqualsPatient(event){
     $.get('AddPatient',{'name':fistName,'lastName':lastName, 'birthDate':date}, function (data) {
         if(data == 'Same') {
             event.preventDefault();
-            $('#error_message').css({'display':'inline'});
+
+            $('#error_message').css({'display':'inline'}).innerHTML("Patient " + fistName + " " + lastName + " already exist!");
+
 
         } else{
             $.post('AddPatient',{'name':fistName,'lastName':lastName, 'birthDate':date});
@@ -63,3 +67,13 @@ function checkEqualsPatient(event){
         }
     });
 }
+
+function showFullNameEqualPatient(){
+    var fistName = $('#form-first-name').val();
+    var lastName =  $('#form-last-name').val();
+    return $('#error_message').html("Patient " + fistName + " " + lastName + " already exist!");
+
+}
+
+
+

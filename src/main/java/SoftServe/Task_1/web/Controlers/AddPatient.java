@@ -14,9 +14,6 @@ import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Set;
 
-import static SoftServe.Task_1.IO.Validators.SelfFormatValidator.validBirthDate;
-import static SoftServe.Task_1.IO.Validators.SelfFormatValidator.validName;
-
 /**
  * Created by ayasintc on 4/7/2016.
  */
@@ -26,9 +23,6 @@ public class AddPatient extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();
-
-       /* RequestDispatcher dispatcher = request.getRequestDispatcher("AddPatient.jsp");
-        dispatcher.forward(request, response);*/
 
         String name = request.getParameter("name");
         String lastName = request.getParameter("lastName");
@@ -40,7 +34,7 @@ public class AddPatient extends HttpServlet {
                 .setName(name)
                 .build();
 
-        Set<Patient> tmpPatients = new HashSet<>();
+        Set<Patient> tmpPatients;
 
         try {
             tmpPatients = new PatientDAO().getAllPatients();
@@ -61,36 +55,20 @@ public class AddPatient extends HttpServlet {
         String name = request.getParameter("name");
         String lastName = request.getParameter("lastName");
         String birthDate = request.getParameter("birthDate");
-      /*  PrintWriter out = response.getWriter();
-        out.print("Patient with that name exits");*/
-
-        if(!validBirthDate(birthDate)) {
-
-        }
-
-        if(!validName(name)) {
-
-        }
-
-        if(!validName(lastName)) {
-
-        }
-
-        /*if (name ==null)name ="";
-        if (lastName ==null)name ="";
-        if (birthDate ==null)name ="";*/
 
         Patient patient = Patient.newPatientBuilder()
                 .setBirthDate(birthDate)
                 .setLastName(lastName)
                 .setName(name)
+                .setStatus(true)
                 .build();
 
         Set<Patient> patients = new HashSet<>();
+
+       /*
         Set<Patient> tmpPatients = new HashSet<>();
 
-
-       /* try {
+       try {
             boolean flag = true;
             tmpPatients = new PatientDAO().getAllPatients();
             for(Patient onePatient: tmpPatients) {
@@ -108,9 +86,8 @@ public class AddPatient extends HttpServlet {
             e.printStackTrace();
         }*/
 
-
-        new PatientDAO().addPatient(patient);
         try{
+            new PatientDAO().addPatient(patient);
             patients = new PatientDAO().getAllPatients();
         }catch (Exception e) {
             e.printStackTrace();

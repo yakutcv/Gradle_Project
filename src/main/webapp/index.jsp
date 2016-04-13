@@ -40,7 +40,7 @@
 <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
 <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
-        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+        <a id="menu-close" href="#" class="btn btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
         <li class="sidebar-brand">
             <a href="#top"  onclick = $("#menu-close").click(); >Chernivtsi Hospital</a>
         </li>
@@ -68,7 +68,7 @@
         <h1>Chernivtsi National Hospital</h1>
         <h3>The duty of everyone to be healthy</h3>
         <br>
-        <a class="btn btn-info btn-lg" role="button" href = "<c:url value = "AddPatient.jsp"/>">
+        <a class="btn btn-light btn-lg" role="button" href = "<c:url value = "AddPatient.jsp"/>">
             <i class="icon-white icon-plus"></i> Add Patient</a>
 
         <a class="btn btn-dark btn-lg" role="button" href = "<c:url value = "Patients"/>">
