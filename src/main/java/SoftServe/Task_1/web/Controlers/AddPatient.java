@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by ayasintc on 4/7/2016.
@@ -29,6 +27,7 @@ public class AddPatient extends HttpServlet {
         String name = request.getParameter("name");
         String lastName = request.getParameter("lastName");
         String birthDate = request.getParameter("birthDate");
+
 
         Patient patient = Patient.newPatientBuilder()
                 .setBirthDate(birthDate)

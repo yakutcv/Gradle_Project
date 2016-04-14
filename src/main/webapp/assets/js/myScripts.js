@@ -51,43 +51,33 @@ jQuery(document).ready(function() {
 
 //ajax post and get
 function checkEqualsPatient(event){
-   /* $.noty.defaults.killer = true;*/
-    var fistName = $('#form-first-name').val();
+    var firstName = $('#form-first-name').val();
     var lastName =  $('#form-last-name').val();
     var date = $('#datetimepicker4').val();
-    /*if(fistName==null||lastName==null||date==null) {
-        console.log(fistName);
-        console.log(date);
 
-    }*/
-    console.log(date);
-
-    $.get('AddPatient',{'name':fistName,'lastName':lastName, 'birthDate':date}, function (data) {
+    $.get('AddPatient',{'name':firstName,'lastName':lastName, 'birthDate':date}, function (data) {
         if(data == 'Same') {
             event.preventDefault();
             $('#error_message').css({'display':'inline'});
-          /*  $('#error_message').html("Patient " + fistName + " " + lastName + " already exist!");*/
-         /*   noty({
-                text: 'Please, fill ' + arguments==null,
-                layout: 'TopCenter',
-                closeWith: ['click', 'hover'],
-                type: 'error'
-            });
-*/
-            showFullNameEqualPatient();
+           /* $('#error_message').html("Patient " + firstName + " " + lastName + " already exist!");*/
+
+            /*$().toastmessage('showErrorToast', "Patient " + firstName + " " + lastName + " already exist!");*/
+            $().toastmessage('showToast', {
+                text:              "Patient " +firstName + " " + lastName + " already exist!",
+                sticky   :         true,
+                position :         'top-center',
+                type     :         'error',
+                inEffectDuration:  600,
+                stayTime:          3000,
+
+                close    : function () {console.log("toast is closed ...");}
+            })
+
         } else{
-            $.post('AddPatient',{'name':fistName,'lastName':lastName, 'birthDate':date});
+            $.post('AddPatient',{'name':firstName,'lastName':lastName, 'birthDate':date});
             window.location.replace("/Patients");
         }
     });
 }
-
-function showFullNameEqualPatient(){
-    var fistName = $('#form-first-name').val();
-    var lastName =  $('#form-last-name').val();
-    return $('#error_message').html("Patient " + fistName + " " + lastName + " already exist!");
-  /*  innerHTML("Patient " + fistName + " " + lastName + " already exist!");*/
-}
-
 
 

@@ -11,20 +11,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>New Patient</title>
-
     <!-- CSS -->
+
+
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/form-elements.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/form-elements.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}css/jquery.toastmessage.css">
+
+
+    <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.backstretch.min.js"></script>
+
 
     <script type="text/javascript">
         var d = new Date();
         $(function () {
             $('#datetimepicker4').datetimepicker({
-                format: 'MM/DD/YYYY',
+                format: 'DD/MM/YYYY',
                 maxDate:d
             });
         });
@@ -112,15 +122,18 @@
     </div>
 </footer>
 
-<!-- Javascript -->
+
+
 <script src="assets/js/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="noty/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+
+
 <script src="assets/js/jquery.backstretch.min.js"></script>
 <script src="assets/js/myScripts.js"></script>
+<script src="${pageContext.request.contextPath}js/jquery.toastmessage.js"></script>
 
 
 </body>

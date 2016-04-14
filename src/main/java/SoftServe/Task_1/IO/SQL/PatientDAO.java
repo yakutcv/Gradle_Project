@@ -13,6 +13,14 @@ import java.util.*;
  */
 public class PatientDAO {
 
+    public PatientDAO (){
+        Thread thread = new Thread();
+        thread.run();
+    }
+
+
+
+
     SQLConnector connector = new SQLConnector();
     private static Statement statement;
     private static PreparedStatement preparedStatement;
@@ -227,9 +235,6 @@ public class PatientDAO {
     }
 
     public synchronized List<Patient> getAllPatients() {
-        Thread th = new Thread();
-
-        th.start();
         List<Patient> patients = new ArrayList<>();
         try{
             connector.connect();

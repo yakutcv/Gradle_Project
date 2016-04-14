@@ -148,7 +148,6 @@
         var name = Selection[2];
         var id = Selection[1];
         var action = Selection[0];
-        alert(action+id);
         $(this).find('#deleteButton').attr('href', action+id);
         $('.debug-url').html('Are you sure you want to delete patient <strong>' + name +" ?" + '</strong>');
     });

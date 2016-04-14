@@ -33,7 +33,7 @@
     var d = new Date();
     $(function () {
       $('#datetimepicker4').datetimepicker({
-        format: 'MM/DD/YYYY',
+        format: 'DD/MM/YYYY',
         maxDate:d
       });
     });
