@@ -13,7 +13,6 @@
     <title>New Patient</title>
     <!-- CSS -->
 
-
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -72,25 +71,24 @@
 
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">First name</label>
-                                    <input type="text" name="name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
+                                    <input type="text" name="name" placeholder="First name..." class="form-first-name form-control" id="form-first-name" required/>
                                 </div>
 
 
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Last name</label>
-                                    <input type="text" name="lastName" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
+                                    <input type="text" name="lastName" placeholder="Last name..." class="form-last-name form-control" id="form-last-name" required/>
                                 </div>
 
 
                                 <div class="form-group">
                                     <label for="datetimepicker4" class="col-sm-2 control-label sr-only">Birth Date</label>
-                                    <input type='text' class="form-control " placeholder="Birthday..." id='datetimepicker4' name="birthDate"/>
+                                    <input type='text' class="form-control " placeholder="Birthday..." id='datetimepicker4' name="birthDate" required/>
                                 </div>
 
-                                <button type="submit" class="btn form-control" onclick="checkEqualsPatient(event)">Add Patient</button>
+                                <button type="submit" class="btn form-control" onclick="checkPatient(event)">Add Patient</button>
 
-                                <input type="hidden" name = "id" value="${patient.getId()}">
-
+                                <input type="hidden" id ="updatePatient" name = "id" value="${patient.getId()}">
                             </div>
 
                             <form name = "goToPatietnsList" action = "Patients" method = "POST">
@@ -129,10 +127,7 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
-
-
 <script src="assets/js/jquery.backstretch.min.js"></script>
-
 <script src="${pageContext.request.contextPath}js/jquery.toastmessage.js"></script>
 
 

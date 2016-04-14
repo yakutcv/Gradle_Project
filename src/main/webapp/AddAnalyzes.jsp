@@ -22,17 +22,19 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}css/jquery.toastmessage.css">
+
+
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
-
-
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 
     <script type="text/javascript">
         var d = new Date();
+
         $(function () {
-            $('#datetimepicker4').datetimepicker({
+            $('#datetimepicker2').datetimepicker({
                 format: 'DD/MM/YYYY HH:mm',
                 sideBySide: true,
                 maxDate:d
@@ -61,7 +63,7 @@
                         </div>
 
                         <div class="form-bottom">
-                            <form role="form" action="AddAnalyzes?id=${patient.getId()}" method="POST" class="registration-form">
+                            <div role="form" <%--action="AddAnalyzes?id=${patient.getId()}" method="POST"--%> class="registration-form">
                                 <div class="form-group">
                                     <label class="sr-only control-label" for="inputType">Type Analyzes</label>
                                     <select name="type" class="form-control" id="inputType">
@@ -71,8 +73,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="datetimepicker4" class="col-sm-2 control-label sr-only">Date</label>
-                                    <input type='text' class="form-control" id='datetimepicker4' name="date"
+                                    <label for="datetimepicker2" class="col-sm-2 control-label sr-only">Date</label>
+                                    <input type='text' class="form-control" id='datetimepicker2' name="date"
                                            placeholder="Date..."/>
                                 </div>
 
@@ -81,9 +83,9 @@
                                     <textarea name="report" placeholder="Report..." class="form-report form-control"
                                               id="inputReport"></textarea>
                                 </div>
-                                <button type="submit" class="btn">Add Analyzes</button>
-                                <input type="hidden" name="id" value="${patient.getId()}">
-                            </form>
+                                <button type="submit" onclick = "checkAnalysis(event)" class="btn form-control">Add Analyzes</button>
+                                <input type="hidden" name="id" id="patientId" value="${patient.getId()}">
+                            </div>
 
                             <form name="goToListWithAnalyzes" action="AllAnalyzes?id=${patient.getId()}" method="POST">
                                 <button type="submit" class="btn btn-primary">Go back to the list with Analyzes</button>
@@ -119,6 +121,7 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}js/jquery.toastmessage.js"></script>
 
 <script src="assets/js/jquery.backstretch.min.js"></script>
 <script src="assets/js/myScripts.js"></script>

@@ -22,10 +22,9 @@ import java.util.List;
 
 public class AllAnalyzesController extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         long id = Long.parseLong(request.getParameter("id"));
-
 
         Patient patient = new PatientDAO().getPatientById(id);
 
@@ -43,11 +42,10 @@ public class AllAnalyzesController extends HttpServlet {
         request.setAttribute("patient", patient);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("AllAnalyzes.jsp");
-
         dispatcher.forward(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("AllPatients");
         dispatcher.forward(request, response);

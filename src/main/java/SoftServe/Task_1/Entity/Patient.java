@@ -13,7 +13,6 @@ import org.joda.time.format.DateTimeFormatter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,11 +77,9 @@ public class Patient implements Comparable<Patient> {
         return listAnalyzes;
     }
 
-
     public String getLastName() {
         return lastName;
     }
-
 
     public String getName() {
         return name;
@@ -134,13 +131,14 @@ public class Patient implements Comparable<Patient> {
         }
 
         public PatientBuilder setLastName(String lastName) {
-            Patient.this.lastName = lastName;
+            Patient.this.lastName = lastName.substring(0,1).toUpperCase() + lastName.substring(1, lastName.length()).toLowerCase();
             return this;
         }
 
         public PatientBuilder setName(String name) {
-            Patient.this.name = name;
+            Patient.this.name = name.substring(0,1).toUpperCase() + name.substring(1, name.length()).toLowerCase();
             return this;
+
         }
 
         public PatientBuilder setId(long id) {

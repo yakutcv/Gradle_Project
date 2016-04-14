@@ -14,7 +14,8 @@ import static SoftServe.Task_1.IO.Exceptions.ExceptionList.*;
 
 public class SelfFormatValidator {
 
-    private static final String NAME_PATTERN = "[A-Z,a-z]+";
+    private static final String NAME_PATTERN = "[A-Z]{1}[a-z]{2,20}";
+    private static final String REPORT_PATTERN = ".{1,200}";
     private static final String ANALYZES_PATTERN = "\\s([A-Z,a-z]{1,})\\s\\((.*)\\)\\s(.*)";
     private static final String INPUT_PATTERN = "(([A-Z,a-z]{1,})\\s([A-Z,a-z]{1,})\\s\\(.*\\))\\:\\{(\\w*\\s\\(.*\\)\\s(\\w*\\s*){1,}\\,|\\,){1,}\\s*\\}";
 
@@ -49,6 +50,14 @@ public class SelfFormatValidator {
             }
         }
         return true;
+    }
+
+    public static boolean validReport (String report){
+        if(validInputValue(report, REPORT_PATTERN)) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public static boolean validBirthDate(String date) {
@@ -93,7 +102,6 @@ public class SelfFormatValidator {
     }
 
     public static String convertDate (String value) {
-
         String tmp ="";
         if(value.length()==1) {
             tmp = "0"+value;

@@ -16,18 +16,18 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" />
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="assets/css/form-elements.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}assets/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/form-elements.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}css/jquery.toastmessage.css">
 
 
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" />
   <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery.backstretch.min.js"></script>
+  <script src="assets/js/myScripts.js"></script>
 
   <script type="text/javascript">
     var d = new Date();
@@ -63,28 +63,27 @@
             </div>
 
             <div class="form-bottom">
-              <form role="form" name="AddPatient" action="EditPatientController" method="GET" class="registration-form">
+              <div role="form" name="AddPatient" <%--action="EditPatientController" method="GET"--%> class="registration-form">
 
                 <div class="form-group">
                   <label class="sr-only" for="form-first-name">First name</label>
-                  <input type="text" name="name" value="${patient2.name}" class="form-first-name form-control" id="form-first-name">
+                  <input type="text" name="name" value="${patient2.name}" class="form-first-name form-control" id="form-first-name" required>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="form-last-name">Last name</label>
-                  <input type="text" name="lastName" value ="${patient2.lastName}" class="form-last-name form-control" id="form-last-name">
+                  <input type="text" name="lastName" value ="${patient2.lastName}" class="form-last-name form-control" id="form-last-name" required>
                 </div>
 
                 <div class="form-group">
                   <label for="datetimepicker4" class="col-sm-2 control-label sr-only">Birth Date</label>
-                  <input type='text' class="form-control" value ="${patient2.getBirthDateInString()}" id='datetimepicker4' name="birthDate" />
+                  <input type='text' class="form-control" value ="${patient2.getBirthDateInString()}" id='datetimepicker4' name="birthDate" required/>
                 </div>
 
-                <button type="submit" class="btn">Edit Patient</button>
+                <button type="submit" class="btn form-control" onclick="checkPatient(event)">Edit Patient</button>
 
-                <input type="hidden" name = "id" value="${patient2.getId()}">
-              </form>
-
+                <input type="hidden" id = "updatePatient" name = "id" value="${patient2.getId()}">
+              </div>
               <form name = "goToPatietnsList" action = "Patients">
                   <button type="submit" class="btn btn-primary">Go back to the list with all patients</button>
               </form>
@@ -121,13 +120,9 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
-
 <script src="assets/js/jquery.backstretch.min.js"></script>
-<script src="assets/js/myScripts.js"></script>
+<script src="${pageContext.request.contextPath}js/jquery.toastmessage.js"></script>
 
-<!--[if lt IE 10]>
-<script src="assets/js/placeholder.js"></script>
-<![endif]-->
 
 </body>
 </html>

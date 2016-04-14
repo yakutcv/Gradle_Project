@@ -52,15 +52,15 @@
                         <td>${patient.name} </td>
                         <td>${patient.getBirthDateInString()}</td>
                         <td>
-                            <form class="col-sm-5" name = "listAnalyzes" action ="AllAnalyzes?id=${patient.id}" method = "POST">
+                            <div class="col-sm-5" name = "listAnalyzes">
                                 <p data-placement="top" data-toggle="tooltip" title="Analyzes">
-                                    <button class="btn btn-success" data-title="Analyzes"><span class="glyphicon glyphicon-tint"> </span></button></p>
-                            </form>
+                                    <a class="btn btn-success" data-title="Analyzes" href="AllAnalyzes?id=${patient.id}"><span class="glyphicon glyphicon-tint"> </span></a></p>
+                            </div>
                         </td>
                         <td>
-                            <form class="col-sm-5" name = "listAnalyzes" action = "EditPatientController?id=${patient.id}" method = "POST">
-                                <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn" data-title="Edit">
-                                    <span class="glyphicon glyphicon-pencil"></span></button>
+                            <form class="col-sm-5" name = "listAnalyzes">
+                                <p data-placement="top" data-toggle="tooltip" title="Edit"><a class="btn btn-primary btn" data-title="Edit" href="EditPatientController?id=${patient.id}">
+                                    <span class="glyphicon glyphicon-pencil"></span></a>
                                 </p>
                             </form>
                         </td>
@@ -68,12 +68,12 @@
                             <div class="col-sm-5">
                                 <p data-placement="top" data-toggle="tooltip" title="Delete">
                                     <button  class="btn btn-danger" id="deletePatient" data-values="DeletePatient?id=,${patient.id},${patient.name}" data-toggle="modal" data-target="#myModal">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
                                 </p>
                             </div>
-                           <%-- </form>--%>
-                          <%--  modal--%>
+                                <%-- </form>--%>
+                                <%--  modal--%>
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -85,13 +85,13 @@
                                             <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span><p class="debug-url"></p></div>
                                         </div>
                                         <div class="modal-footer">
-                                                <a class="btn btn-success" id ="deleteButton" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No</button>
+                                            <a class="btn btn-success" id ="deleteButton" type="submit"><span class="glyphicon glyphicon-ok-sign"></span>Yes</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                       <%-- end modal--%>
+                                <%-- end modal--%>
                         </td>
                     </tr>
                     </tbody>
@@ -108,7 +108,6 @@
 
 
 <%--
-
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -121,7 +120,6 @@
                     <input class="form-control " type="text" placeholder="Mohsin">
                 </div>
                 <div class="form-group">
-
                     <input class="form-control " type="text" placeholder="Irshad">
                 </div>
                 <div class="form-group">
@@ -129,7 +127,7 @@
                 </div>
             </div>
             <div class="modal-footer ">
-                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -139,11 +137,9 @@
 --%>
 
 <script>
-
     $('#myModal').on('show.bs.modal', function(e) {
-       /* var id = $(e.relatedTarget).data('id');*/
-       /*  var name = $(e.relatedTarget).data('name');*/
-
+        /* var id = $(e.relatedTarget).data('id');*/
+        /*  var name = $(e.relatedTarget).data('name');*/
         var Selection = $(e.relatedTarget).data('values').split(",");
         var name = Selection[2];
         var id = Selection[1];
