@@ -28,7 +28,7 @@
     <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.backstretch.min.js"></script>
-
+    <script src="assets/js/myScripts.js"></script>
 
     <script type="text/javascript">
         var d = new Date();
@@ -108,7 +108,7 @@
 <!-- Footer -->
 <footer>
     <div class="container">
-        <div class="row">
+        <div class="row for-error">
             <br>
             <br>
             <br>
@@ -132,7 +132,7 @@
 
 
 <script src="assets/js/jquery.backstretch.min.js"></script>
-<script src="assets/js/myScripts.js"></script>
+
 <script src="${pageContext.request.contextPath}js/jquery.toastmessage.js"></script>
 
 

@@ -55,20 +55,19 @@ function checkEqualsPatient(event){
     var lastName =  $('#form-last-name').val();
     var date = $('#datetimepicker4').val();
 
-    $.get('AddPatient',{'name':firstName,'lastName':lastName, 'birthDate':date}, function (data) {
+    $.get('AddPatient',{'name':firstName,'lastName':lastName,'birthDate':date}, function (data) {
         if(data == 'Same') {
             event.preventDefault();
             $('#error_message').css({'display':'inline'});
            /* $('#error_message').html("Patient " + firstName + " " + lastName + " already exist!");*/
 
-            /*$().toastmessage('showErrorToast', "Patient " + firstName + " " + lastName + " already exist!");*/
             $().toastmessage('showToast', {
                 text:              "Patient " +firstName + " " + lastName + " already exist!",
-                sticky   :         true,
+                sticky   :         false,
                 position :         'top-center',
                 type     :         'error',
                 inEffectDuration:  600,
-                stayTime:          3000,
+                stayTime:          1000,
 
                 close    : function () {console.log("toast is closed ...");}
             })

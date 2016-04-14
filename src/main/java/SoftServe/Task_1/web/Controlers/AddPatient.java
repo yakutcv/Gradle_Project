@@ -29,6 +29,10 @@ public class AddPatient extends HttpServlet {
         String birthDate = request.getParameter("birthDate");
 
 
+
+
+
+
         Patient patient = Patient.newPatientBuilder()
                 .setBirthDate(birthDate)
                 .setLastName(lastName)

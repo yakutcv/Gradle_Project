@@ -1,30 +1,29 @@
 .toast-container {
-	width: 30px;
-	z-index: 9999;
+    width: 30%;
+    z-index: 9999;
 }
 
 
 * html .toast-container {
-	position: absolute;		
+    position: absolute;
 }
- 
+
 .toast-item {
-	height: auto;
-	background: #ffffff;
-    opacity: 0.9;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	color: #ffffff;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	padding-left: 6px;
-	padding-right: 6px;
-	font-family: lucida Grande;
-	font-size: 24px;
-	border: 2px solid #42bfc2;
-	display: block;
-	position: relative;
-	margin: 0 0 12px 0;
+    height: auto;
+    background: white;
+    opacity: 0.8;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    color: white;
+    padding:5px;
+    margin-top:8%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    border: 2px solid;
+    border-color:#070045;
+    display: block;
+    position: relative;
+
 }
 
 .toast-item p {
@@ -32,20 +31,13 @@
     margin-left: 50px;
 }
 
-.toast-item-close {
-    background:url(../images/close.gif);
-    width:22px;
-    height:22px;
-    position: absolute;
-    top:7px;
-    right:7px;
-}
+
 
 .toast-item-image {
     width:32px;
     height: 32px;
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-right: 10px;
     float:left;
 }
@@ -66,20 +58,19 @@
     background:url(../images/error.png);
 }
 
-
-/** 
- * toast types 
- * 
+/**
+ * toast types
+ *
  * pattern: toast-type-[value]
  * where 'value' is the real value of the plugin option 'type'
- * 
+ *
  */
 .toast-type-notice {
-    color: white;    
+    color: white;
 }
 
 .toast-type-success {
-    color: white;    
+    color: white;
 }
 
 .toast-type-warning {
@@ -88,16 +79,16 @@
 }
 
 .toast-type-error {
-    color: white;
+    color: black;
     border-color: #42bfc2;
 }
 
-/** 
- * positions 
- * 
+/**
+ * positions
+ *
  * pattern: toast-position-[value]
  * where 'value' is the real value of the plugin option 'position'
- * 
+ *
  */
 .toast-position-top-left {
     position: fixed;
@@ -107,9 +98,9 @@
 
 .toast-position-top-center {
     position: fixed;
-    top: 10px;
+    top: 1%;
     left: 50%;
-    margin-left: -140px;
+    margin-left: -15%;
 }
 
 .toast-position-top-right {
