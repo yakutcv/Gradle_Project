@@ -21,12 +21,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}css/jquery.toastmessage.css">
 
-
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.backstretch.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/validate.min.js"></script>
     <script src="assets/js/myScripts.js"></script>
 
     <script type="text/javascript">
@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="form-bottom">
-                            <div role="form" name="AddPatient" class="registration-form">
+                            <div role="form" name="AddPatient" class="registration-form" id ="addPatientForm" data-toggle="validator">
 
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">First name</label>
@@ -79,7 +79,6 @@
                                     <label class="sr-only" for="form-last-name">Last name</label>
                                     <input type="text" name="lastName" placeholder="Last name..." class="form-last-name form-control" id="form-last-name" required/>
                                 </div>
-
 
                                 <div class="form-group">
                                     <label for="datetimepicker4" class="col-sm-2 control-label sr-only">Birth Date</label>
@@ -119,8 +118,6 @@
         </div>
     </div>
 </footer>
-
-
 
 <script src="assets/js/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
