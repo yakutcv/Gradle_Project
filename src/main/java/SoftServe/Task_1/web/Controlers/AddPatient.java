@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +24,15 @@ import static SoftServe.Task_1.IO.Validators.SelfFormatValidator.validName;
 @WebServlet("/AddPatient")
 public class AddPatient extends HttpServlet {
 
+
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String name = request.getParameter("name");
         String lastName = request.getParameter("lastName");
         String birthDate = request.getParameter("birthDate");
         String id = request.getParameter("id");
+
 
         Patient patient = Patient.newPatientBuilder()
                 .setBirthDate(birthDate)
@@ -42,24 +46,28 @@ public class AddPatient extends HttpServlet {
             out.print("Invalid_last_name");
         }else if(!validBirthDate(patient.getBirthDateInString())) {
             out.print("Invalid_birth_date");
-        } else{
+        } /*else{
+            Long tmpId = null;
             try{
-                long tmpId = Long.parseLong(id);
+                tmpId = Long.parseLong(id);
             }catch (Exception e) {
-                List<Patient> tmpPatients;
-                try {
-                    tmpPatients = new PatientDAO().getAllPatients();
-                    for(Patient onePatient: tmpPatients) {
-                        if(onePatient.getFullName().equals(patient.getFullName())) {
-                            out.print("Same");
-                            break;
-                        }
-                    }
-                } catch (Exception exc) {
-                    exc.printStackTrace();
-                }
-            }
 
+            }
+            */
+
+        if (id.equals("")){
+            List<Patient> tmpPatients;
+            try {
+                tmpPatients = new PatientDAO().getAllPatients();
+                for(Patient onePatient: tmpPatients) {
+                    if(onePatient.getFullName().equals(patient.getFullName()) )  {
+                        out.print("Same");
+                        break;
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 

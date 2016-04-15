@@ -20,13 +20,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/form-elements.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}css/jquery.toastmessage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}css/formValidation.css">
 
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.backstretch.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/validate.min.js"></script>
+
+    <script src="${pageContext.request.contextPath}js/validationForm.js"></script>
     <script src="assets/js/myScripts.js"></script>
 
     <script type="text/javascript">
@@ -38,6 +40,8 @@
             });
         });
     </script>
+
+
 
 </head>
 
@@ -67,17 +71,16 @@
                         </div>
 
                         <div class="form-bottom">
-                            <div role="form" name="AddPatient" class="registration-form" id ="addPatientForm" data-toggle="validator">
+                            <div role="form" name="AddPatient" class="registration-form" id ="addPatientForm">
 
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">First name</label>
-                                    <input type="text" name="name" placeholder="First name..." class="form-first-name form-control" id="form-first-name" required/>
+                                    <input type="text" name="name" placeholder="First name..." class="form-first-name form-control" id="form-first-name"/>
                                 </div>
-
 
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Last name</label>
-                                    <input type="text" name="lastName" placeholder="Last name..." class="form-last-name form-control" id="form-last-name" required/>
+                                    <input type="text" name="lastName"  placeholder="Last name..." class="form-last-name form-control" id="form-last-name"/>
                                 </div>
 
                                 <div class="form-group">
@@ -86,7 +89,6 @@
                                 </div>
 
                                 <button type="submit" class="btn form-control" onclick="checkPatient(event)">Add Patient</button>
-
                                 <input type="hidden" id ="updatePatient" name = "id" value="${patient.getId()}">
                             </div>
 
@@ -119,14 +121,12 @@
     </div>
 </footer>
 
-<script src="assets/js/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 <script src="assets/js/jquery.backstretch.min.js"></script>
 <script src="${pageContext.request.contextPath}js/jquery.toastmessage.js"></script>
-
 
 </body>
 </html>

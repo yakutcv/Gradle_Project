@@ -49,6 +49,8 @@
 
     <div class="inner-bg">
         <div class="container">
+
+
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <div class="form-box">
@@ -82,14 +84,17 @@
                                     <label class="sr-only" for="inputReport">Report</label>
                                     <textarea name="report" placeholder="Report..." class="form-report form-control"
                                               id="inputReport"></textarea>
-                                </div>
-                                <button type="submit" onclick = "checkAnalysis(event)" class="btn form-control">Add Analyzes</button>
+                                    </div>
+
                                 <input type="hidden" name="id" id="patientId" value="${patient.getId()}">
+                                <button type="submit" onclick = "checkAnalysis(event)" class="btn form-control">Add Analyzes</button>
                             </div>
 
-                            <form name="goToListWithAnalyzes" action="AllAnalyzes?id=${patient.getId()}" method="POST">
-                                <button type="submit" class="btn btn-primary">Go back to the list with Analyzes</button>
+                            <form name="goToListWithAnalyzes" role="form" class="registration-form" action="AllAnalyzes" method="GET">
+                                <input type="hidden" name="id" id="patientId2" value="${patient.getId()}">
+                                <button type="submit" class="btn btn-primary">Go back to the list with Analyzes </button>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -101,7 +106,7 @@
 <!-- Footer -->
 <footer>
     <div class="container">
-        <div class="row">
+        <div class="row for-error">
             <br>
             <br>
             <br>
@@ -122,14 +127,8 @@
 <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}js/jquery.toastmessage.js"></script>
-
 <script src="assets/js/jquery.backstretch.min.js"></script>
 <script src="assets/js/myScripts.js"></script>
 
-
-<!--[if lt IE 10]>
-<script src="assets/js/placeholder.js"></script>
-        <![endif]-->
-
-    </body>
+</body>
 </html>

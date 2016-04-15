@@ -18,7 +18,7 @@ public class SQLConnector {
         return connection;
     }
 
-    public void connect() throws Exception {
+    public void connect() throws SQLException {
         if (connection != null) return;
         try{
             Class.forName(MySQL_DRIVER);

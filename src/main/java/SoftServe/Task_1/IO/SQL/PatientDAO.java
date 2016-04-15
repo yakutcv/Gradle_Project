@@ -226,7 +226,7 @@ public class PatientDAO {
         return patient;
     }
 
-    public synchronized List<Patient> getAllPatients() {
+    public synchronized List<Patient> getAllPatients() throws SQLException{
         List<Patient> patients = new ArrayList<>();
         try{
             connector.connect();

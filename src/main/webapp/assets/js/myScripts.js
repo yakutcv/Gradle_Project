@@ -77,7 +77,7 @@ function checkPatient(event){
             }
 
             case 'Invalid_name': {
-                event.preventDefault();
+                 event.preventDefault();
                 $().toastmessage('showToast', {
                     text: "Invalid name " + firstName + " .Please retry your input!",
                     sticky: false,
@@ -139,15 +139,12 @@ function checkPatient(event){
 
 
 function checkAnalysis(event) {
-
     var type = $('#inputType').val();
     var report = $('#inputReport').val();
     var date = $('#datetimepicker2').val();
     var id = $('#patientId').val();
-
     $.get('CheckerAnalysis',{'id':id,'type':type,'report':report,'date':date}, function (data) {
         switch (data){
-
             case 'invalid_type': {
                 event.preventDefault();
                 $().toastmessage('showToast', {
