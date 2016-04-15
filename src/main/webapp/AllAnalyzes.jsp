@@ -50,9 +50,7 @@
                                     </button>
                                 </p>
                             </div>
-
                           <%-- modal window --%>
-
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -90,20 +88,7 @@
 </div>
 
 <script>
-    $('#myModal').on('show.bs.modal', function(e) {
-        /* var id = $(e.relatedTarget).data('id');*/
-        /*  var name = $(e.relatedTarget).data('name');*/
 
-        var Selection = $(e.relatedTarget).data('values').split(",");
-        var action = Selection[0];
-        var patientId = Selection[1];
-        var analysisId = Selection[2];
-        var analysisType = Selection[3];
-        var analysisDate = Selection[4];
-
-        $(this).find('#deleteButton').attr('href', action+patientId+analysisId);
-        $('.debug-url').html('Are you really want to delete analysis <strong>' + analysisType + " by " + analysisDate + "?" + '</strong>');
-    });
 </script>
 
 

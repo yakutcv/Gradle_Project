@@ -9,10 +9,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Edit Patient</title>
     <!-- CSS -->
-
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -20,6 +18,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/form-elements.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}css/jquery.toastmessage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}css/style.css">
 
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -27,21 +26,8 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.backstretch.min.js"></script>
     <script src="assets/js/myScripts.js"></script>
-
-    <script type="text/javascript">
-        var d = new Date();
-        $(function () {
-            $('#datetimepicker4').datetimepicker({
-                format: 'DD/MM/YYYY',
-                maxDate:d
-            });
-        });
-    </script>
-
 </head>
-
 <body>
-
 <div class="top-content">
     <div class="inner-bg">
         <div class="container">
@@ -50,7 +36,6 @@
                     <h2 id="error_message" style="display: none"> </h2>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <div class="form-box">
@@ -63,43 +48,37 @@
                                 <i class="fa fa-pencil"></i>
                             </div>
                         </div>
-
                         <div class="form-bottom">
                             <div role="form" name="AddPatient" class="registration-form">
-
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">First name</label>
-                                    <input type="text" name="name" value="${patient2.name}" class="form-first-name form-control" id="form-first-name" required>
+                                    <input type="text" name="name" value="${patient2.name}" class="form-first-name form-control" id="form-first-name" onkeyup="checkName(this.value)"required/>
+                                    <span id="wrongLength">First name required from 2 to 20 characters!</span>
+                                    <span id="wrongNameFormat">Wrong format first name!</span>
                                 </div>
-
-
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Last name</label>
-                                    <input type="text" name="lastName" value="${patient2.lastName}" placeholder="Last name..." class="form-last-name form-control" id="form-last-name" required/>
+                                    <input type="text" name="lastName" value="${patient2.lastName}" placeholder="Last name..." class="form-last-name form-control" id="form-last-name" onkeyup="checkLastName(this.value)"required/>
+                                    <span id="wrongLengthLM">Last name required from 2 to 20 characters!</span>
+                                    <span id="wrongNameFormatLM">Wrong format last name!</span>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="datetimepicker4" class="col-sm-2 control-label sr-only">Birth Date</label>
                                     <input type='text' class="form-control" value ="${patient2.getBirthDateInString()}" placeholder="Birthday..." id='datetimepicker4' name="birthDate" required/>
                                 </div>
-
                                 <button type="submit" class="btn form-control" onclick="checkPatient(event)">Edit Patient</button>
                                 <input type="hidden" id = "updatePatient" name = "id" value="${patient2.getId()}">
                             </div>
-
                             <form name = "goToPatietnsList" action = "Patients" method = "POST">
                                 <button type="submit" class="btn btn-primary">Go back to the list with all patients</button>
                             </form>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
 <!-- Footer -->
 <footer>
     <div class="container">
@@ -116,7 +95,6 @@
         </div>
     </div>
 </footer>
-
 <script src="assets/js/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -124,7 +102,5 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
 <script src="assets/js/jquery.backstretch.min.js"></script>
 <script src="${pageContext.request.contextPath}js/jquery.toastmessage.js"></script>
-
-
 </body>
 </html>

@@ -239,3 +239,11 @@ img { max-width: 100%; }
 	
 }
 
+.btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
+.icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}
+
+#wrongNameFormatLM, #wrongLength, #wrongLengthLM, #wrongNameFormat, #wrongLengthReport {
+    display: none;
+    outline-color:#19b9e7;
+    color: #ffffff;
+}

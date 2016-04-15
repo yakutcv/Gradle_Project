@@ -9,9 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Add Analysis</title>
-
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css"/>
@@ -23,16 +21,14 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}css/jquery.toastmessage.css">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}css/style.css">
 
     <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.min.js"></script>
-
     <script type="text/javascript">
         var d = new Date();
-
         $(function () {
             $('#datetimepicker2').datetimepicker({
                 format: 'DD/MM/YYYY HH:mm',
@@ -42,15 +38,11 @@
         });
     </script>
 </head>
-
 <body>
 <!-- Top content -->
 <div class="top-content">
-
     <div class="inner-bg">
         <div class="container">
-
-
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <div class="form-box">
@@ -63,14 +55,13 @@
                                 <i class="fa fa-pencil"></i>
                             </div>
                         </div>
-
                         <div class="form-bottom">
                             <div role="form" <%--action="AddAnalyzes?id=${patient.getId()}" method="POST"--%> class="registration-form">
                                 <div class="form-group">
                                     <label class="sr-only control-label" for="inputType">Type Analyzes</label>
                                     <select name="type" class="form-control" id="inputType">
                                         <c:forEach items = "${analysisTypes}" var = "oneType">
-                                        <option value="${oneType}">${oneType}</option>
+                                            <option value="${oneType}">${oneType}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -79,22 +70,19 @@
                                     <input type='text' class="form-control" id='datetimepicker2' name="date"
                                            placeholder="Date..."/>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="sr-only" for="inputReport">Report</label>
                                     <textarea name="report" placeholder="Report..." class="form-report form-control"
-                                              id="inputReport"></textarea>
-                                    </div>
-
+                                              id="inputReport" onkeyup="checkReport(this.value)"></textarea>
+                                    <span id="wrongLengthReport">Report must contains maximum 200 characters!</span>
+                                </div>
                                 <input type="hidden" name="id" id="patientId" value="${patient.getId()}">
                                 <button type="submit" onclick = "checkAnalysis(event)" class="btn form-control">Add Analyzes</button>
                             </div>
-
                             <form name="goToListWithAnalyzes" role="form" class="registration-form" action="AllAnalyzes" method="GET">
                                 <input type="hidden" name="id" id="patientId2" value="${patient.getId()}">
                                 <button type="submit" class="btn btn-primary">Go back to the list with Analyzes </button>
                             </form>
-
                         </div>
                     </div>
                 </div>
@@ -102,7 +90,6 @@
         </div>
     </div>
 </div>
-
 <!-- Footer -->
 <footer>
     <div class="container">

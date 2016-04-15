@@ -68,12 +68,8 @@
         <h1>Chernivtsi National Hospital</h1>
         <h3>The duty of everyone to be healthy</h3>
         <br>
-        <a class="btn btn-light btn-lg" role="button" href = "<c:url value = "AddPatient.jsp"/>">
-            <i class="icon-white icon-plus"></i> Add Patient</a>
-
-        <a class="btn btn-dark btn-lg" role="button" href = "<c:url value = "Patients"/>">
-            <i class="icon-white icon-info-sign"></i>All Patients</a>
-
+        <a class="btn icon-btn btn-success btn-lg" role="button" href = "<c:url value = "AddPatient.jsp"/>"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add Patient</a>
+        <a class="btn icon-btn btn-info btn-lg"  role="button" href = "<c:url value = "Patients"/>"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>All Patients</a>
     </div>
 </header>
 
